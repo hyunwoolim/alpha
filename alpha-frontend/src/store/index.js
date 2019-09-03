@@ -15,7 +15,6 @@ export default function (/* { ssrContext } */) {
     modules: {
       // example
     },
-
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEV
