@@ -27,6 +27,7 @@ module.exports = function (ctx) {
       // lang: 'de', // Quasar language
       // all: true, // --- includes everything; for dev only!
       components: [
+        'QAvatar',
         'QLayout',
         'QHeader',
         'QDrawer',
