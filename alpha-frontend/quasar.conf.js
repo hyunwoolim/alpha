@@ -28,19 +28,24 @@ module.exports = function (ctx) {
       // all: true, // --- includes everything; for dev only!
       components: [
         'QAvatar',
-        'QLayout',
-        'QHeader',
+        'QBadge',
+        'QBtn',
+        'QCard',
+        'QCardSection',
+        'QCardActions',
         'QDrawer',
+        'QHeader',
+        'QIcon',
+        'QItem',
+        'QItemLabel',
+        'QItemSection',
+        'QLayout',
+        'QList',
         'QPageContainer',
         'QPage',
+        'QParallax',
         'QToolbar',
-        'QToolbarTitle',
-        'QBtn',
-        'QIcon',
-        'QList',
-        'QItem',
-        'QItemSection',
-        'QItemLabel'
+        'QToolbarTitle'
       ],
       directives: [
         'Ripple'
@@ -72,8 +77,18 @@ module.exports = function (ctx) {
     },
     devServer: {
       // https: true,
-      port: 9091,
-      open: true // opens browser window automatically
+      port: 4041,
+      open: true, // opens browser window automatically
+      proxy: {
+        // proxy all requests starting with /api to jsonplaceholder
+        '/api': {
+          target: 'http://localhost:4040',
+          changeOrigin: true,
+          pathRewrite: {
+            '^/api': ''
+          }
+        }
+      }
     },
     // animations: 'all', // --- includes all animations
     animations: [],

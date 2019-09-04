@@ -11,7 +11,7 @@
         >
           <q-icon name="menu"/>
         </q-btn>
-        <q-toolbar-title class="absolute-center" @click="goPageIndex">
+        <q-toolbar-title class="absolute-center cursor-pointer" @click="goPageIndex">
           알파
         </q-toolbar-title>
         <div></div>
