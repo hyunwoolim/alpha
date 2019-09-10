@@ -25,10 +25,13 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+        <q-item-label header>
+          Essential Links
+          <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
+        </q-item-label>
         <q-item clickable tag="a" target="_blank" @click="goPageMyInfo">
           <q-item-section avatar>
-            <q-icon name="school"/>
+            <q-icon name="person"/>
           </q-item-section>
           <q-item-section>
             <q-item-label>내정보</q-item-label>
