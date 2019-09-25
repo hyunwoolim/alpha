@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    jdbc.driverClassName: com.p6spy.engine.spy.P6SpyDriver
+    jdbc.url: jdbc:p6spy:h2:mem:db;DB_CLOSE_DELAY=-1
+    jdbc.username: sa
+    jdbc.password: sa
