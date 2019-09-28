@@ -1,13 +1,16 @@
 <template>
   <q-page>
-    <v-btn @click="naverLogin">로그인</v-btn>
+    <q-btn @click="naverLogin" label="로그인"></q-btn>
   </q-page>
 </template>
 <script lang="ts">
+import { Member } from '../../model/Member'
+
 export default {
   name: 'PageLogin',
   data () {
     return {
+      member: new Member(),
       naverData: {
         clientId: 'ggsFtWFewo9oiFQP1Tjz',
         redirectUri: 'http://localhost:4041/login/callback',
@@ -19,7 +22,6 @@ export default {
   created () {
   },
   mounted () {
-
   },
   methods: {
     generateState () {
@@ -27,10 +29,7 @@ export default {
     },
     naverLogin () {
       const me = this
-      me.naverData.naverLoginUrl += '&client_id=' + me.naverData.clientId
-      me.naverData.naverLoginUrl += '&redirect_uri=' + me.naverData.redirectUri
-      me.naverData.naverLoginUrl += '&state=' + this.state
-      location.href = me.naverData.naverLoginUrl
+      me.member.save()
     }
   }
 }
