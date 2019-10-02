@@ -1,22 +1,39 @@
 package com.max.alpha.model;
 
 import lombok.Data;
+import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "APM_MEMBER")
+@EntityListeners(AuditingEntityListener.class)
 public class Member {
 
   @Id
-  @Column(name = "ID")
+  @Column(name = "ID", length = 36)
   private String id;
 
   @Column(name = "EMAIL")
   private String email;
+
+  @Column(name = "$PASSWORD$")
+  private String password;
+
+  @Column(name = "NAME")
+  private String name;
+
+  @CreatedDate
+  @Column(name = "CREATED_DATE", insertable = true, updatable = false)
+  private Date createdDate;
+
+  public Member() {
+    this.id = UUID.randomUUID().toString();
+  }
 
 }
