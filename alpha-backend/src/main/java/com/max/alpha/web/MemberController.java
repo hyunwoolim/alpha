@@ -13,7 +13,7 @@ public class MemberController {
   @Autowired
   private MemberService memberService;
 
-  @PostMapping
+  @PostMapping(value = "/api/public/member")
   public void save(@RequestBody MemberData data) {
     memberService.save(data);
   }

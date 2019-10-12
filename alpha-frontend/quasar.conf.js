@@ -37,6 +37,7 @@ module.exports = function (ctx) {
         'QHeader',
         'QIcon',
         'QImg',
+        'QInput',
         'QItem',
         'QItemLabel',
         'QItemSection',
@@ -83,7 +84,7 @@ module.exports = function (ctx) {
       proxy: {
         // proxy all requests starting with /api to jsonplaceholder
         '/api': {
-          target: 'http://localhost:4040',
+          target: 'http://localhost:4040/api',
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''

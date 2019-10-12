@@ -1,7 +1,7 @@
 package com.max.alpha.model;
 
+import com.max.alpha.model.data.MemberData;
 import lombok.Data;
-import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -36,4 +36,9 @@ public class Member {
     this.id = UUID.randomUUID().toString();
   }
 
+  public void define(MemberData data) {
+    this.email = data.getEmail();
+    this.name = data.getName();
+    this.password = data.getPassword();
+  }
 }

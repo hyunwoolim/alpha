@@ -1,18 +1,8 @@
 <template>
-  <q-page class="q-pa-md">
-    <div class="text-h5">
-      내 정보
-    </div>
-    <q-card class="my-card">
-      <q-img
-        src="https://cdn.quasar.dev/img/parallax2.jpg"
-        basic
-      >
-        <div class="absolute-bottom text-subtitle2 text-center">
-          Title
-        </div>
-      </q-img>
-    </q-card>
+  <q-page class="q-pa-md q-gutter-md">
+    <q-avatar>
+      <img src="https://cdn.quasar.dev/img/avatar.png">
+    </q-avatar>
     <!--<q-card class="my-card">
       <q-parallax
         src="https://cdn.quasar.dev/img/parallax1.jpg"

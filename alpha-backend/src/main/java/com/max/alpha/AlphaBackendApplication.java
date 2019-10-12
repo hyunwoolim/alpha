@@ -9,5 +9,4 @@ public class AlphaBackendApplication {
   public static void main(String[] args) {
     SpringApplication.run(AlphaBackendApplication.class, args);
   }
-
 }

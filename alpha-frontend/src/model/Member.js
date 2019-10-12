@@ -11,7 +11,7 @@ export class Member extends Model {
   }
   routes () {
     return {
-      save: '/api/member'
+      save: '/api/public/member'
     }
   }
 }
