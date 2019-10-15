@@ -36,9 +36,10 @@ public class Member {
     this.id = UUID.randomUUID().toString();
   }
 
-  public void define(MemberData data) {
+  public Member define(MemberData data) {
     this.email = data.getEmail();
     this.name = data.getName();
     this.password = data.getPassword();
+    return this;
   }
 }

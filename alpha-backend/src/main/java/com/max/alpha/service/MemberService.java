@@ -17,7 +17,8 @@ public class MemberService {
   private MemberRepository memberRepository;
 
   public void save(MemberData data) {
-    Member member = new Member();
+    Member member = new Member().define(data);
+    System.out.println(member);
     memberRepository.save(member);
   }
 
