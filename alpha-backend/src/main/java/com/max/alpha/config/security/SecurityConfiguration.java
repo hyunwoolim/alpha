@@ -13,6 +13,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     //http.authorizeRequests().antMatchers("/api/public/**").permitAll();
     http.authorizeRequests().anyRequest().permitAll();
+    http.formLogin()
+      .loginPage("/login")
+      .loginProcessingUrl("/secure-login")
+      .defaultSuccessUrl("/");
     http.csrf().disable();
   }
 
