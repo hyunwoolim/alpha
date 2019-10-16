@@ -20,7 +20,7 @@ public class PasswordEncoder implements org.springframework.security.crypto.pass
   }
 
   public String getSha256(String password) throws NoSuchAlgorithmException {
-    MessageDigest messageDigest = MessageDigest.getInstance("sha-256");
+    MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
     messageDigest.update(password.getBytes());
     byte[] digest = messageDigest.digest();
     return convertByteToHex(digest);
