@@ -1,7 +1,9 @@
 package com.max.alpha.model;
 
+import com.max.alpha.config.security.PasswordEncoder;
 import com.max.alpha.model.data.MemberData;
 import lombok.Data;
+import lombok.NonNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,15 +19,19 @@ public class Member {
 
   @Id
   @Column(name = "ID", length = 36)
+  @NonNull
   private String id;
 
   @Column(name = "EMAIL")
+  @NonNull
   private String email;
 
   @Column(name = "$PASSWORD$")
+  @NonNull
   private String password;
 
   @Column(name = "NAME")
+  @NonNull
   private String name;
 
   @CreatedDate
