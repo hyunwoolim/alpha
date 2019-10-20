@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import FlagIcon from 'vue-flag-icon'
 
 // import example from './module-example'
 
 Vue.use(Vuex)
+Vue.use(FlagIcon)
 
 /*
  * If not building with SSR mode, you can

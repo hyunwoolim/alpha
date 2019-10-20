@@ -1,7 +1,5 @@
 package com.max.alpha.service;
 
-import com.google.common.base.Strings;
-import com.max.alpha.config.security.PasswordEncoder;
 import com.max.alpha.model.Member;
 import com.max.alpha.model.data.MemberData;
 import com.max.alpha.repository.MemberRepository;
@@ -16,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
   @Autowired
-  PasswordEncoder passwordEncoder;
+  private PasswordEncoder passwordEncoder;
 
   @Autowired
   private MemberRepository memberRepository;
@@ -26,6 +24,7 @@ public class MemberService {
       data.setPassword(passwordEncoder.encode(data.getPassword()));
     }
     Member member = new Member().define(data);
+    System.out.println(member);
     memberRepository.save(member);
   }
 

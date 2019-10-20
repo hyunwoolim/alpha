@@ -2,7 +2,8 @@
   <q-page>
     <div class="row justify-center q-pa-lg">
       <form>
-        <q-input square outlined v-model="member.email" label="이메일" class="q-mb-lg"></q-input>
+        {{$t('cancel')}}
+        <q-input square outlined v-model="member.email" label="이메일" class="q-mb-lg" type="email" :error="!!member.errors.email" :error-message="(!!member.errors.email) ? member.errors.email[0] : ''"></q-input>
         <q-input square outlined v-model="member.name" label="이름" class="q-mb-lg"></q-input>
         <q-input square outlined v-model="member.password" label="비밀번호" :type="isPwd ? 'password' : 'text'" class="q-mb-lg">
           <template v-slot:append>

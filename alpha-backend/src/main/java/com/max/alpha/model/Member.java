@@ -18,18 +18,22 @@ import java.util.UUID;
 public class Member {
 
   @Id
+  @NonNull
   @Column(name = "ID", length = 36)
   @NonNull
   private String id;
 
+  @NonNull
   @Column(name = "EMAIL")
   @NonNull
   private String email;
 
+  @NonNull
   @Column(name = "$PASSWORD$")
   @NonNull
   private String password;
 
+  @NonNull
   @Column(name = "NAME")
   @NonNull
   private String name;

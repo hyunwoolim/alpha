@@ -27,6 +27,7 @@
       <q-list>
         <q-item-label header>
           Essential Links
+          <flag iso="kr"></flag>
           <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
         </q-item-label>
         <q-item clickable tag="a" target="_blank" @click="goPageMyInfo">
