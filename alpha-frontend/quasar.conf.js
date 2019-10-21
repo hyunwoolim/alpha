@@ -7,6 +7,7 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'axios'
+      // 'quasar-lang-pack'
     ],
     css: [
       'app.styl'

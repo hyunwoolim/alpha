@@ -2,6 +2,7 @@ package com.max.alpha.model;
 
 import com.max.alpha.model.data.MemberData;
 import lombok.Data;
+import lombok.NonNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -16,15 +17,19 @@ import java.util.UUID;
 public class Member {
 
   @Id
+  @NonNull
   @Column(name = "ID", length = 36)
   private String id;
 
+  @NonNull
   @Column(name = "EMAIL")
   private String email;
 
+  @NonNull
   @Column(name = "$PASSWORD$")
   private String password;
 
+  @NonNull
   @Column(name = "NAME")
   private String name;
 

@@ -17,4 +17,5 @@ public class MemberController {
   public void save(@RequestBody MemberData data) {
     memberService.save(data);
   }
+
 }
