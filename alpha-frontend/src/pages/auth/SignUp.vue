@@ -14,7 +14,12 @@
             />
           </template>
         </q-input>
-        <q-btn  @click="signUp" label="가입하기"></q-btn>
+        <div>
+          <q-btn  @click="signUp" label="가입하기"></q-btn>
+          <span class="text-right cursor-pointer" @click="goPageLogin">
+            {{$t('account.already')}}
+          </span>
+        </div>
       </form>
     </div>
   </q-page>
@@ -38,6 +43,10 @@ export default {
     signUp () {
       const me = this
       me.member.save()
+    },
+    goPageLogin () {
+      const me = this
+      me.$router.push('/login')
     }
   }
 }

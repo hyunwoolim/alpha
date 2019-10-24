@@ -6,6 +6,8 @@
         <q-input square outlined name="username" v-model="email" :label="$t('email')" class="q-mb-lg" type="email" @keyup.enter="login"></q-input>
         <q-input square outlined name="password" v-model="password" :label="$t('password')" type="password" class="q-mb-lg" @keyup.enter="login"></q-input>
         <q-btn outline :label="$t('login')" @click="login"></q-btn>
+        <q-space></q-space>
+        <q-btn outline :label="$t('signup')" @click="goPageSignUp"></q-btn>
       </q-form>
     </div>
   </q-page>
@@ -19,13 +21,7 @@ export default {
     return {
       member: new Member(),
       email: '',
-      password: '',
-      naverData: {
-        clientId: 'ggsFtWFewo9oiFQP1Tjz',
-        redirectUri: 'http://localhost:4041/api/auth/login',
-        state: this.generateState,
-        naverLoginUrl: 'https://nid.naver.com/oauth2.0/authorize?response_type=code'
-      }
+      password: ''
     }
   },
   created () {
@@ -35,6 +31,10 @@ export default {
   methods: {
     generateState () {
       return 'test'
+    },
+    goPageSignUp () {
+      const me = this
+      me.$router.push('/signup')
     },
     login () {
       const me = this
@@ -53,8 +53,9 @@ export default {
         url: '/api/secure-login',
         method: 'post',
         data: formData
-      }).then(() => {
+      }).then((res) => {
         console.log('a')
+        console.log(res)
       }).catch((e) => {
         console.log(e)
         me.$q.notify({
@@ -63,11 +64,6 @@ export default {
           message: e.toString()
         })
       })
-    },
-    naverLogin () {
-      const me = this
-      me.naverData.naverLoginUrl += '&client_id=' + me.naverData.clientId + '&redirect_uri=' + me.naverData.redirectUri + '&state=' + this.state
-      location.href = me.naverData.naverLoginUrl
     }
   }
 }

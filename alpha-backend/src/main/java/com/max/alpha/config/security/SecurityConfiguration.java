@@ -13,8 +13,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     //http.authorizeRequests().antMatchers("/api/public/**").permitAll();
     http.authorizeRequests().anyRequest().permitAll();
-    http.formLogin()
-      .loginProcessingUrl("/api/secure-login");
     http.csrf().disable();
     http.cors().disable();
   }
