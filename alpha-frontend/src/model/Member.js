@@ -1,4 +1,5 @@
 import { Model, Collection } from 'vue-mc'
+import { $t } from '../boot/i18n'
 import _ from 'lodash'
 
 export class Member extends Model {
@@ -24,6 +25,17 @@ export class Member extends Model {
     return {
       email: (value, prop, model) => {
         if (_.isEmpty(value)) {
+          return $t('validation.email.required')
+        }
+      },
+      name: (value, prop, model) => {
+        if (_.isEmpty(value)) {
+          return $t('validation.name.required')
+        }
+      },
+      password: (value, prop, model) => {
+        if (_.isEmpty(value)) {
+          return $t('validation.password.required')
         }
       }
     }

@@ -15,4 +15,8 @@ export default ({ app }) => {
   app.i18n = i18n
 }
 
+export function $t (message) {
+  return i18n.t(message)
+}
+
 export { i18n }

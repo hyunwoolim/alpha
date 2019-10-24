@@ -26,7 +26,9 @@
     >
       <q-list>
         <q-item-label header>
-          Essential Links
+          <span class="cursor-pointer" @click="goPageLogin">
+            {{$t('please.login')}}
+          </span>
           <flag iso="kr"></flag>
           <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
         </q-item-label>
@@ -119,6 +121,9 @@ export default {
     },
     goPageIndex () {
       this.$router.push('/')
+    },
+    goPageLogin () {
+      this.$router.push('/login')
     }
   }
 }

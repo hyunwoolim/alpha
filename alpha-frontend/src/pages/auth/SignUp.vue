@@ -2,10 +2,10 @@
   <q-page>
     <div class="row justify-center q-pa-lg">
       <form>
-        {{$t('cancel')}}
-        <q-input square outlined v-model="member.email" label="이메일" class="q-mb-lg" type="email" :error="!!member.errors.email" :error-message="(!!member.errors.email) ? member.errors.email[0] : ''"></q-input>
-        <q-input square outlined v-model="member.name" label="이름" class="q-mb-lg"></q-input>
-        <q-input square outlined v-model="member.password" label="비밀번호" :type="isPwd ? 'password' : 'text'" class="q-mb-lg">
+        {{$t('welcome')}}
+        <q-input square outlined v-model="member.email" :label="$t('email')" class="q-mb-lg" type="email" :error="!!member.errors.email" :error-message="(!!member.errors.email) ? member.errors.email[0] : ''"></q-input>
+        <q-input square outlined v-model="member.name" :label="$t('name')" class="q-mb-lg" :error="!!member.errors.name" :error-message="(!!member.errors.name) ? member.errors.name[0] : ''"></q-input>
+        <q-input square outlined v-model="member.password" :label="$t('password')" :type="isPwd ? 'password' : 'text'" class="q-mb-lg" :error="!!member.errors.password" :error-message="(!!member.errors.password) ? member.errors.password[0] : ''">
           <template v-slot:append>
             <q-icon
               :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -27,7 +27,7 @@ export default {
   data () {
     return {
       member: new Member(),
-      isPwd: false
+      isPwd: true
     }
   },
   created () {

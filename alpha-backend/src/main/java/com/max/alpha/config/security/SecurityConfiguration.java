@@ -14,10 +14,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //http.authorizeRequests().antMatchers("/api/public/**").permitAll();
     http.authorizeRequests().anyRequest().permitAll();
     http.formLogin()
-      .loginPage("/login")
-      .loginProcessingUrl("/secure-login")
-      .defaultSuccessUrl("/");
+      .loginProcessingUrl("/api/secure-login");
     http.csrf().disable();
+    http.cors().disable();
   }
 
 }
