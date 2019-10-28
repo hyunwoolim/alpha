@@ -1,5 +1,7 @@
 package com.max.alpha.web;
 
+import com.max.alpha.model.Authority;
+import com.max.alpha.model.Member;
 import com.max.alpha.model.data.MemberData;
 import com.max.alpha.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,8 @@ public class MemberController {
   private MemberService memberService;
 
   @PostMapping(value = "/api/public/member")
-  public void save(@RequestBody MemberData data) {
-    memberService.save(data);
+  public void create(@RequestBody MemberData data) {
+    memberService.create(data);
   }
 
 }

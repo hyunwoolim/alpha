@@ -2,8 +2,10 @@ package com.max.alpha.service;
 
 import com.google.common.base.Strings;
 import com.max.alpha.config.security.PasswordEncoder;
+import com.max.alpha.model.Authority;
 import com.max.alpha.model.Member;
 import com.max.alpha.model.data.MemberData;
+import com.max.alpha.repository.AuthorityRepository;
 import com.max.alpha.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,17 @@ public class MemberService {
   @Autowired
   private MemberRepository memberRepository;
 
-  public void save(MemberData data) {
+  @Autowired
+  private AuthorityRepository authorityRepository;
+
+  public void create(MemberData data) {
     if (!Strings.isNullOrEmpty(data.getPassword())) {
       data.setPassword(passwordEncoder.encode(data.getPassword()));
     }
     Member member = new Member().define(data);
-    System.out.println(member);
     memberRepository.save(member);
+    authorityRepository.save(new Authority(member.getId(), "USER1", null));
   }
+
 
 }

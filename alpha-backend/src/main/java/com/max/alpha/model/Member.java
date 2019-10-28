@@ -42,12 +42,14 @@ public class Member implements UserDetails {
   @Column(name = "NAME")
   private String name;
 
-//  @Transient
-//  private String authorities;
-
   @CreatedDate
   @Column(name = "CREATED_DATE", insertable = true, updatable = false)
   private Date createdDate;
+
+  @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+  @JoinColumn(name = "USERNAME")
+  @Transient
+  private Collection<Authority> authorities;
 
   public Member() {
     this.id = UUID.randomUUID().toString();
@@ -60,10 +62,10 @@ public class Member implements UserDetails {
     return this;
   }
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Arrays.asList(new SimpleGrantedAuthority("RO"));
+  public void userAuthority(Authority authority) {
+    this.authorities = Arrays.asList(authority);
   }
+
 
   @Override
   public String getUsername() {
