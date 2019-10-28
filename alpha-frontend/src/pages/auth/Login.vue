@@ -25,6 +25,7 @@ export default {
     }
   },
   created () {
+
   },
   mounted () {
   },
@@ -62,6 +63,12 @@ export default {
           timeout: 500,
           color: 'negative',
           message: e.toString()
+        })
+        me.$axios({
+          url: '/api/public/session',
+          method: 'get'
+        }).then(res => {
+          console.log(res)
         })
       })
     }
