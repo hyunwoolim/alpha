@@ -12,11 +12,4 @@ export default {
 }
 </script>
 <style lang="stylus">
-  .item
-    height: 100%
-  .dropzone
-    outline: solid 1px
-    height: 50px
-  .draggable-dropzone--occupied
-    background: lightgreen
 </style>

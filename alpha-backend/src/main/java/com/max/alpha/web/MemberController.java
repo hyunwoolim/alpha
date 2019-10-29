@@ -15,7 +15,7 @@ public class MemberController {
   @Autowired
   private MemberService memberService;
 
-  @PostMapping(value = "/api/public/member")
+  @PostMapping(value = "/public/member")
   public void create(@RequestBody MemberData data) {
     memberService.create(data);
   }

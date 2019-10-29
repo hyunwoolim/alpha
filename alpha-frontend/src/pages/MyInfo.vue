@@ -20,7 +20,10 @@
 </style>
 <script>
 export default {
-  name: 'PageMyInfo'
+  name: 'PageMyInfo',
+  created () {
+    console.log(this.$store.state.sMember)
+  }
 }
 </script>
 <style lang="stylus">

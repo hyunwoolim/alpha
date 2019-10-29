@@ -42,7 +42,10 @@ export default {
   methods: {
     signUp () {
       const me = this
-      me.member.save()
+      me.member.save().then(() => {
+        me.$router.push('/login')
+      }).catch((e) => {
+      })
     },
     goPageLogin () {
       const me = this

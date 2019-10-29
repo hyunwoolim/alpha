@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import FlagIcon from 'vue-flag-icon'
 
+import sMember from './s-member'
 // import example from './module-example'
 
 Vue.use(Vuex)
-Vue.use(FlagIcon)
 
 /*
  * If not building with SSR mode, you can
@@ -15,7 +14,7 @@ Vue.use(FlagIcon)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      // example
+      sMember
     },
     // enable strict mode (adds overhead!)
     // for dev mode only

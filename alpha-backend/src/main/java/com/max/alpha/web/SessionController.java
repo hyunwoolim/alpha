@@ -1,6 +1,5 @@
 package com.max.alpha.web;
 
-import com.google.common.base.Strings;
 import com.max.alpha.model.Member;
 import com.max.alpha.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,11 @@ public class SessionController {
   @Autowired
   private MemberRepository memberRepository;
 
-  @GetMapping(value = "/api/public/session")
+  @GetMapping(value = "/public/session")
   public Member session() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    if (!Strings.isNullOrEmpty(auth.getName())) {
-      System.out.println(auth.getName());
+    if (auth.getPrincipal() instanceof Member) {
+      return (Member) auth.getPrincipal();
     }
     return null;
   }

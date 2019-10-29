@@ -1,8 +1,7 @@
-import axios from '../../boot/axios'
+import { SMember } from '../../model/SMember'
 
-export function get (/* context */) {
-  axios({
-    url: '',
-    method: 'get'
-  })
+export function get (context) {
+  let sMember = new SMember()
+  sMember.fetch()
+  context.commit('set', sMember)
 }

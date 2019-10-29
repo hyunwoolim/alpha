@@ -12,13 +12,10 @@ export class SMember extends Model {
 
   routes () {
     return {
-      fetch: '/api/public/member'
+      fetch: '/api/public/session'
     }
   }
 
   options () {
-    return {
-      validateOnChange: true
-    }
   }
 }

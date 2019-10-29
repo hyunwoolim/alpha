@@ -48,7 +48,6 @@ public class Member implements UserDetails {
 
   @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
   @JoinColumn(name = "USERNAME")
-  @Transient
   private Collection<Authority> authorities;
 
   public Member() {

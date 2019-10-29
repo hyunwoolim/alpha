@@ -12,8 +12,9 @@
     </div>
   </q-page>
 </template>
-<script lang="ts">
+<script>
 import { Member } from '../../model/Member'
+import { $t } from '../../boot/i18n'
 
 export default {
   name: 'PageLogin',
@@ -25,7 +26,8 @@ export default {
     }
   },
   created () {
-
+    console.log('1234')
+    this.$store.dispatch('sMember/get')
   },
   mounted () {
   },
@@ -55,21 +57,15 @@ export default {
         method: 'post',
         data: formData
       }).then((res) => {
-        console.log('a')
+        me.$q.notify({
+          timeout: 500,
+          color: 'positive',
+          message: $t('login.succedded')
+        })
+        me.$router.push(res.data)
         console.log(res)
       }).catch((e) => {
         console.log(e)
-        me.$q.notify({
-          timeout: 500,
-          color: 'negative',
-          message: e.toString()
-        })
-        me.$axios({
-          url: '/api/public/session',
-          method: 'get'
-        }).then(res => {
-          console.log(res)
-        })
       })
     }
   }
