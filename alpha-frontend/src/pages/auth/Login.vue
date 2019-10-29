@@ -27,7 +27,6 @@ export default {
   },
   created () {
     console.log('1234')
-    this.$store.dispatch('sMember/get')
   },
   mounted () {
   },

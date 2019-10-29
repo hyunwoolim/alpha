@@ -1,5 +1,8 @@
 server:
   port: 4040
+  servlet:
+    session:
+      timeout: 30m
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/alpha?characterEncoding=UTF-8&serverTimezone=UTC&&autoReconnection=true
