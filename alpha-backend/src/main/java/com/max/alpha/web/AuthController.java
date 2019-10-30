@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-  @CrossOrigin(origins = "http://localhost")
+  @CrossOrigin(origins = "*")
   @GetMapping({"/login-succeeded", "logout-succeeded"})
   public String success() {
     return "/";

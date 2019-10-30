@@ -30,9 +30,6 @@ export default {
   mounted () {
   },
   methods: {
-    generateState () {
-      return 'test'
-    },
     goPageSignUp () {
       const me = this
       me.$router.push('/signup')
