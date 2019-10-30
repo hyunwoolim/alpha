@@ -20,14 +20,19 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
       content-class="bg-grey-2"
     >
       <q-list>
         <q-item-label header>
-          <span class="cursor-pointer" @click="goPageLogin">
-            {{$store.state.sMember}} {{$t('please.login')}}
+          <span v-show="!$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogin">
+            {{$t('please.login')}}
+          </span>
+          <span v-show="$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogin">
+            {{ $store.state.sMember.info.name }}
+          </span>
+          <span v-show="$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogout">
+            {{$t('logout')}}
           </span>
           <flag iso="kr"></flag>
           <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
@@ -114,6 +119,17 @@ export default {
       leftDrawerOpen: false
     }
   },
+  beforeRouteUpdate (to, from, next) {
+    if ((to.meta) && (to.meta.authorities) && (to.meta.authorities.length > 0)) {
+      if (!this.$store.state.sMember.isAuthenticated) {
+        this.$router.push('/login')
+      } else if ((to.meta.authorities.includes(this.$store.state.sMember.authority)) || (this.$store.state.sMember.authority === 'ADMIN')) {
+        next()
+      }
+    } else {
+      next()
+    }
+  },
   methods: {
     openURL,
     goPageMyInfo () {
@@ -124,6 +140,9 @@ export default {
     },
     goPageLogin () {
       this.$router.push('/login')
+    },
+    goPageLogout () {
+      this.$router.push('/logout')
     }
   }
 }

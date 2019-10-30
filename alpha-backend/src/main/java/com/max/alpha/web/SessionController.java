@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SessionController {
 
-  @Autowired
-  private MemberRepository memberRepository;
-
   @GetMapping(value = "/public/session")
   public Member session() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -26,7 +26,6 @@ export default {
     }
   },
   created () {
-    console.log('1234')
   },
   mounted () {
   },
@@ -59,10 +58,10 @@ export default {
         me.$q.notify({
           timeout: 500,
           color: 'positive',
-          message: $t('login.succedded')
+          message: $t('login.succeeded')
         })
+        this.$store.dispatch('sMember/checkSession')
         me.$router.push(res.data)
-        console.log(res)
       }).catch((e) => {
         console.log(e)
       })

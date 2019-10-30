@@ -8,8 +8,13 @@ export default {
   name: '이름',
   password: '비밀번호',
   login: '로그인',
+  logout: '로그아웃',
+  signup: '가입',
   please: {
     login: '로그인하세요'
   },
+  'login.succeeded': '로그인 되었습니다.',
+  'logout.processing': '로그아웃 중...',
+  'logout.succeeded': '로그아웃 되었습니다.',
   validation
 }

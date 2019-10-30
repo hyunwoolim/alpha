@@ -4,6 +4,7 @@
   </q-page>
 </template>
 <script>
+import { $t } from '../../boot/i18n'
 
 export default {
   name: 'PageLogout',
@@ -12,12 +13,14 @@ export default {
     }
   },
   created () {
-    this.$axios({
-      url: '/api/logout',
-      method: 'get'
-    }).then((res) => {
-      console.log(res.data)
-      this.$router.push(res.data)
+    const me = this
+    me.$store.dispatch('sMember/logout').then(() => {
+      me.$q.notify({
+        timeout: 500,
+        color: 'positive',
+        message: $t('logout.succeeded')
+      })
+      me.$router.push('/')
     })
   }
 }

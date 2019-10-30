@@ -1,3 +1,5 @@
 export default {
-  sMember: null
+  info: {},
+  authority: '',
+  isAuthenticated: false
 }
