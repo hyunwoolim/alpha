@@ -16,3 +16,11 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+aad:
+  clientId: 0ecfcd37-a6ec-47f4-92a2-cc7d96b29aad
+  authority: https://login.microsoftonline.com/0eb5317e-c042-46dc-90ed-c863635c8454/
+  secretKey: =.=:I3NdHsPE4kHTmmM5QGydS2FDjK]O
+  redirectUriSignin: http://localhost:8080/msal4jsample/secure/aad
+  redirectUriGraph: http://localhost:8080/msal4jsample/graph/me
+
+

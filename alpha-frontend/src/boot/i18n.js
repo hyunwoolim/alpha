@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import messages from 'src/i18n'
-import FlagIcon from 'vue-flag-icon'
+import CountryFlag from 'vue-country-flag'
 
 Vue.use(VueI18n)
-Vue.use(FlagIcon)
+Vue.component('v-country-flag', CountryFlag) // https://www.npmjs.com/package/vue-country-flag
 
 const i18n = new VueI18n({
   locale: 'ko-kr',

@@ -12,9 +12,22 @@
           <q-icon name="menu"/>
         </q-btn>
         <q-toolbar-title class="absolute-center cursor-pointer" @click="goPageIndex">
-          알파
+          {{ $t('app.name') }}
         </q-toolbar-title>
-        <div></div>
+        <q-btn-dropdown label="Lang" class="absolute-right">
+          <q-list>
+            <q-item clickable v-close-popup @click="changeLang('en-us')">
+              <q-item-section>
+                <div @click="changeLang"><v-country-flag country="usa"></v-country-flag></div>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup @click="changeLang('ko-kr')">
+              <q-item-section>
+                <div @click="changeLang"><v-country-flag country="kor"></v-country-flag></div>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
@@ -34,7 +47,6 @@
           <span v-show="$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogout">
             {{$t('logout')}}
           </span>
-          <flag iso="kr"></flag>
           <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
         </q-item-label>
         <q-item clickable tag="a" target="_blank" @click="goPageMyInfo">
@@ -102,7 +114,6 @@
         </q-item>-->
       </q-list>
     </q-drawer>
-
     <q-page-container>
       <router-view/>
     </q-page-container>
@@ -130,10 +141,16 @@ export default {
       next()
     }
   },
+  created () {
+  },
   methods: {
     openURL,
     goPageMyInfo () {
-      this.$router.push('/my-info')
+      this.$router.push('/my-info').catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.leftDrawerOpen = false
+        }
+      })
     },
     goPageIndex () {
       this.$router.push('/')
@@ -143,6 +160,9 @@ export default {
     },
     goPageLogout () {
       this.$router.push('/logout')
+    },
+    changeLang (lang) {
+      this.$i18n.locale = lang || this.$q.lang.getLocale()
     }
   }
 }

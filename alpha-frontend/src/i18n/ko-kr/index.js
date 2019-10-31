@@ -3,6 +3,9 @@
 import validation from './validation'
 
 export default {
+  app: {
+    name: '알파!'
+  },
   welcome: '환영합니다.',
   email: '이메일',
   name: '이름',
