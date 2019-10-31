@@ -4,7 +4,7 @@ import validation from './validation'
 
 export default {
   app: {
-    name: '알파!'
+    name: '알파'
   },
   welcome: '환영합니다.',
   email: '이메일',
@@ -13,6 +13,9 @@ export default {
   login: '로그인',
   logout: '로그아웃',
   signup: '가입',
+  account: {
+    already: '계정이 있습니다.'
+  },
   please: {
     login: '로그인하세요'
   },

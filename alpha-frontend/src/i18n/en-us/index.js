@@ -4,20 +4,23 @@ import validation from './validation'
 
 export default {
   app: {
-    name: 'Alpha!'
+    name: 'Alpha'
   },
-  welcome: 'welcome!',
-  email: 'email!',
-  name: 'name!',
-  password: 'password!',
-  login: 'login!',
-  logout: 'logout!',
-  signup: 'signup!',
+  welcome: 'Welcome',
+  email: 'Email',
+  name: 'Name',
+  password: 'Password',
+  login: 'Login',
+  logout: 'Logout',
+  signup: 'Sign Up',
+  account: {
+    already: 'Already have an account?'
+  },
   please: {
-    login: 'please login!'
+    login: 'Please Login'
   },
-  'login.succeeded': 'login succeeded!',
-  'logout.processing': 'logout processing!',
-  'logout.succeeded': 'logout succeeded!',
+  'login.succeeded': 'Login Succeeded!',
+  'logout.processing': 'Logout Processing!',
+  'logout.succeeded': 'Logout Succeeded!',
   validation
 }

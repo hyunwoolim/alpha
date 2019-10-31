@@ -18,12 +18,12 @@
           <q-list>
             <q-item clickable v-close-popup @click="changeLang('en-us')">
               <q-item-section>
-                <div @click="changeLang"><v-country-flag country="usa"></v-country-flag></div>
+                <q-item-label><v-country-flag country="usa"></v-country-flag></q-item-label>
               </q-item-section>
             </q-item>
             <q-item clickable v-close-popup @click="changeLang('ko-kr')">
               <q-item-section>
-                <div @click="changeLang"><v-country-flag country="kor"></v-country-flag></div>
+                <q-item-label><v-country-flag country="kor"></v-country-flag></q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
