@@ -8,7 +8,8 @@ const routes = [
       { name: 'myInfo', path: '/my-info', component: () => import('pages/MyInfo.vue'), meta: { authorities: ['USER1'] } },
       { name: 'login', path: '/login', component: () => import('pages/auth/Login.vue') },
       { name: 'logout', path: '/logout', component: () => import('pages/auth/Logout.vue') },
-      { name: 'signup', path: '/signup', component: () => import('pages/auth/SignUp.vue') }
+      { name: 'signup', path: '/signup', component: () => import('pages/auth/SignUp.vue') },
+      { name: 'chat', path: '/chat', component: () => import('pages/chat/Chat.vue') }
     ]
   },
   {
