@@ -2,36 +2,33 @@ package com.max.alpha.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "APM_AUTHORITY")
+@Table(name = "APM_CHAT_ROOM")
 @EntityListeners(AuditingEntityListener.class)
-@NoArgsConstructor
 @AllArgsConstructor
-public class Authority implements GrantedAuthority {
-/*
-  public Authority(String username, String authority) {
-    this.username = username;
-    this.authority = authority;
-  }*/
+public class ChatRoom {
 
   @Id
   @NonNull
-  @Column(name = "USERNAME", length = 36)
-  private String username;
+  @Column(name = "ID", length = 36)
+  private String id;
+
+  @Id
+  @NonNull
+  @Column(name = "HOST")
+  private String host;
 
   @NonNull
-  @Column(name = "AUTHORITY")
-  private String authority;
+  @Column(name = "NAME")
+  private String name;
 
   @CreatedDate
   @Column(name = "CREATED_DATE", updatable = false)

@@ -46,7 +46,7 @@ public class Member implements UserDetails {
   private String profileImage;
 
   @CreatedDate
-  @Column(name = "CREATED_DATE", insertable = true, updatable = false)
+  @Column(name = "CREATED_DATE", updatable = false)
   private Date createdDate;
 
   @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
