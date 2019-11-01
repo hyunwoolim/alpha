@@ -1,5 +1,6 @@
 <template>
-  <q-page>
+  <q-page class="q-pa-md q-gutter-md">
+    환영합니다.
   </q-page>
 </template>
 <style>

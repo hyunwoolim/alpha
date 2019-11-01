@@ -6,6 +6,9 @@ export default {
   app: {
     name: 'Alpha'
   },
+  page: {
+    myinfo: 'Profile'
+  },
   welcome: 'Welcome',
   email: 'Email',
   name: 'Name',

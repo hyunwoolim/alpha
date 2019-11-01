@@ -38,18 +38,33 @@
     >
       <q-list>
         <q-item-label header>
-          <span v-show="!$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogin">
-            {{$t('please.login')}}
-          </span>
-          <span v-show="$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogin">
-            {{ $store.state.sMember.info.name }}
-          </span>
-          <span v-show="$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogout">
-            {{$t('logout')}}
-          </span>
-          <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
+          <div class="row">
+            <div v-show="!$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogin">
+              {{$t('please.login')}}
+            </div>
+            <div v-show="$store.state.sMember.isAuthenticated" style="margin: -10px 0px 0px -10px;">
+              <q-btn-dropdown flat no-caps :label="$store.state.sMember.info.name" class="member-name">
+                <q-list>
+                  <q-item clickable v-close-popup @click="goPageMyInfo">
+                    <q-item-section>
+                      <q-item-label>{{$t('page.myinfo')}}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                  <q-item clickable v-close-popup @click="goPageLogout">
+                    <q-item-section>
+                      <q-item-label color="negative">{{$t('logout')}}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-btn-dropdown>
+            </div>
+            <!--<div v-show="$store.state.sMember.isAuthenticated" class="cursor-pointer float-right" @click="goPageLogout">
+              {{$t('logout')}}
+            </div>-->
+            <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
+          </div>
         </q-item-label>
-        <q-item clickable tag="a" target="_blank" @click="goPageMyInfo">
+        <!--<q-item clickable tag="a" target="_blank" @click="goPageMyInfo">
           <q-item-section avatar>
             <q-icon name="person"/>
           </q-item-section>
@@ -57,7 +72,7 @@
             <q-item-label>내정보</q-item-label>
             <q-item-label caption>My Info</q-item-label>
           </q-item-section>
-        </q-item>
+        </q-item>-->
         <!--<q-item clickable tag="a" target="_blank" href="https://quasar.dev">
           <q-item-section avatar>
             <q-icon name="school"/>
@@ -169,4 +184,7 @@ export default {
 </script>
 
 <style>
+  .member-name {
+    font-weight: 600;
+  }
 </style>

@@ -26,6 +26,15 @@ export default {
     }
   },
   created () {
+    const me = this
+    if (me.$store.state.sMember.isAuthenticated) {
+      me.$q.notify({
+        timeout: 500,
+        color: 'positive',
+        message: $t('login.already')
+      })
+      me.$router.push('/')
+    }
   },
   mounted () {
   },
