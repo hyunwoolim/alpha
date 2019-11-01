@@ -21,7 +21,6 @@ public class ChatRoom {
   @Column(name = "ID", length = 36)
   private String id;
 
-  @Id
   @NonNull
   @Column(name = "HOST")
   private String host;

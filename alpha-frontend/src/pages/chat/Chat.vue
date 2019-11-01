@@ -20,7 +20,8 @@ export default {
   },
   methods: {
     send () {
-
+      console.log('sss')
+      this.$sendMessage({ msg: this.input, name: 'test' })
     }
   }
 }
