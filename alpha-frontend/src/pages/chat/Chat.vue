@@ -11,17 +11,23 @@ export default {
   name: 'PageChat',
   data () {
     return {
-      input: ''
+      input: '',
+      socket: this.$socket
     }
   },
   created () {
+    this.socket.on('chat', (data) => {
+      console.log('와따')
+      console.log(data)
+    })
   },
   mounted () {
   },
   methods: {
     send () {
       console.log('sss')
-      this.$sendMessage({ msg: this.input, name: 'test' })
+      this.$join(this.input)
+      this.$sendMessage({ msg: '메세지', name: 'test', room: ('room' + this.input) })
     }
   }
 }
