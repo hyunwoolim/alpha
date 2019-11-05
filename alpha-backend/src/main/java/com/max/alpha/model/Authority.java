@@ -1,5 +1,6 @@
 package com.max.alpha.model;
 
+import com.max.alpha.model.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,10 +32,15 @@ public class Authority implements GrantedAuthority {
 
   @NonNull
   @Column(name = "AUTHORITY")
-  private String authority;
+  @Enumerated(EnumType.STRING)
+  private Role authority;
 
   @CreatedDate
   @Column(name = "CREATED_DATE", updatable = false)
   private Date createdDate;
+
+  public String getAuthority() {
+    return this.authority.getValue();
+  }
 
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SessionController {
 
   @GetMapping(value = "/public/session")
-  public Member session() {
+  public static Member session() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     if (auth.getPrincipal() instanceof Member) {
       return (Member) auth.getPrincipal();

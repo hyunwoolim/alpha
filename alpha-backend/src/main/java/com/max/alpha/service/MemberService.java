@@ -5,6 +5,7 @@ import com.max.alpha.config.security.PasswordEncoder;
 import com.max.alpha.model.Authority;
 import com.max.alpha.model.Member;
 import com.max.alpha.model.data.MemberData;
+import com.max.alpha.model.enums.Role;
 import com.max.alpha.repository.AuthorityRepository;
 import com.max.alpha.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class MemberService {
     }
     Member member = new Member().define(data);
     memberRepository.save(member);
-    authorityRepository.save(new Authority(member.getId(), "USER1", null));
+    authorityRepository.save(new Authority(member.getId(), Role.USER1, null));
   }
 
 
