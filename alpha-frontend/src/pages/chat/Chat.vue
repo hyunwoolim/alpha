@@ -16,6 +16,7 @@ export default {
     }
   },
   created () {
+    this.$join('room1')
     this.socket.on('chat', (data) => {
       console.log('와따')
       console.log(data)
@@ -31,7 +32,6 @@ export default {
   methods: {
     send () {
       console.log('sss')
-      this.$join('room1')
       this.$sendMessage({ msg: '메세지', name: 'test', room: 'room1' })
     }
   }
