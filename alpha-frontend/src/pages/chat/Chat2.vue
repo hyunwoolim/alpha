@@ -8,7 +8,7 @@
 <script>
 
 export default {
-  name: 'PageChat',
+  name: 'PageChat2',
   data () {
     return {
       input: '',
@@ -31,8 +31,8 @@ export default {
   methods: {
     send () {
       console.log('sss')
-      this.$join('room1')
-      this.$sendMessage({ msg: '메세지', name: 'test', room: 'room1' })
+      this.$join('room2')
+      this.$sendMessage({ msg: '메세지', name: 'test', room: 'room2' })
     }
   }
 }

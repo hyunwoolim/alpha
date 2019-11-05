@@ -1,4 +1,4 @@
-import io from 'socket.io-client'
+import io from 'socket.io-client/dist/socket.io.slim'
 const socket = io('http://localhost:3000')
 
 export default async ({ Vue }) => {
@@ -11,7 +11,7 @@ export default async ({ Vue }) => {
     })
   }
   Vue.prototype.$join = (test) => {
-    socket.emit('joinRoom', 'room' + test)
+    socket.emit('joinRoom', test)
   }
   Vue.prototype.$socket = socket
 }
