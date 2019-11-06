@@ -1,28 +1,31 @@
 <template>
   <q-page class="q-pa-md q-gutter-md">
-    <q-avatar>
-      <img src="https://cdn.quasar.dev/img/avatar.png">
-    </q-avatar>
-    <!--<q-card class="my-card">
-      <q-parallax
-        src="https://cdn.quasar.dev/img/parallax1.jpg"
-        :height="150"
-      />
-
-      <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-      </q-card-section>
-    </q-card>-->
+    <q-input v-model="model.name"></q-input>
+    <q-btn label="save" @click="save"></q-btn>
   </q-page>
 </template>
 <style>
 </style>
 <script>
+import { SMember } from '../model/SMember'
+
 export default {
   name: 'PageMyInfo',
+  data () {
+    return {
+      model: new SMember()
+    }
+  },
   created () {
     console.log(this.$store.state.sMember)
+    this.model.fetch()
+  },
+  methods: {
+    save () {
+      this.model.save().then(() => {
+        this.$store.dispatch('sMember/checkSession')
+      })
+    }
   }
 }
 </script>

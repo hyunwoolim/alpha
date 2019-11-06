@@ -12,7 +12,8 @@ export class SMember extends Model {
 
   routes () {
     return {
-      fetch: '/api/public/session'
+      fetch: '/api/public/session',
+      save: '/api/private/session'
     }
   }
 
