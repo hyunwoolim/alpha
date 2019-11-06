@@ -8,6 +8,7 @@ export default {
   name: 'App',
   created () {
     this.$store.dispatch('sMember/checkSession')
+    console.log(this.$router)
   }
 }
 </script>

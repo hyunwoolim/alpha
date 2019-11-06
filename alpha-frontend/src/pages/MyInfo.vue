@@ -17,13 +17,14 @@ export default {
     }
   },
   created () {
-    console.log(this.$store.state.sMember)
     this.model.fetch()
   },
   methods: {
     save () {
       this.model.save().then(() => {
         this.$store.dispatch('sMember/checkSession')
+      }).catch((e) => {
+        this.$t('failed')
       })
     }
   }
