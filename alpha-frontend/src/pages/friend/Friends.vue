@@ -3,6 +3,7 @@
     <div>친구</div>
     <div class="row" v-for="(item, idx) in friends.models" :key="idx">
       <span>{{(idx + 1) + ' ' + item.friendMember.name}}</span>
+      <q-btn label="chat" @click="chat(item)"></q-btn>
     </div>
     <q-input v-model="toId"></q-input>
     <q-btn label="request" @click="request"></q-btn>
@@ -73,6 +74,16 @@ export default {
         data: data
       }).then((res) => {
         console.log(res)
+      })
+    },
+    chat (data) {
+      console.log(data)
+      this.$axios({
+        url: '/api/private/chat/start',
+        method: 'post',
+        data: data
+      }).then((res) => {
+        this.$router.push('/chat/' + res.data.id)
       })
     }
   }

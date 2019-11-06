@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -15,6 +16,16 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 public class ChatRoom {
+
+  public ChatRoom () {
+    this.id = UUID.randomUUID().toString();
+  }
+
+  public ChatRoom(String host, String guest) {
+    this.id = UUID.randomUUID().toString();
+    this.host = host;
+    this.guest = guest;
+  }
 
   @Id
   @NonNull
@@ -26,11 +37,17 @@ public class ChatRoom {
   private String host;
 
   @NonNull
-  @Column(name = "NAME")
-  private String name;
+  @Column(name = "GUEST")
+  private String guest;
 
   @CreatedDate
   @Column(name = "CREATED_DATE", updatable = false)
   private Date createdDate;
+
+  @Transient
+  private Member hostMember;
+
+  @Transient
+  private Member guestMember;
 
 }
