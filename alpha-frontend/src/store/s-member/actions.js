@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-export function checkSession (context) {
-  axios({
+export async function checkSession (context) {
+  await axios({
     url: '/api/public/session',
-    method: 'get'
+    method: 'get',
+    async: false
   }).then((res) => {
     if (res && res.data) {
       res.data.password = ''

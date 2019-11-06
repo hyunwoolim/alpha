@@ -9,6 +9,7 @@ const routes = [
       { name: 'login', path: '/login', component: () => import('pages/auth/Login.vue') },
       { name: 'logout', path: '/logout', component: () => import('pages/auth/Logout.vue') },
       { name: 'signup', path: '/signup', component: () => import('pages/auth/SignUp.vue') },
+      { name: 'friends', path: '/friends', component: () => import('pages/friend/Friends.vue'), meta: { authorities: ['USER1'] } },
       { name: 'chats', path: '/chats', component: () => import('pages/chat/Chats.vue') },
       { name: 'chat', path: '/chat', component: () => import('pages/chat/Chat.vue') },
       { name: 'chat2', path: '/chat2', component: () => import('pages/chat/Chat2.vue') }

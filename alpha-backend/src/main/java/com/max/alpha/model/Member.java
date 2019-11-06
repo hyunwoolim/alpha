@@ -60,6 +60,13 @@ public class Member implements UserDetails {
     return this;
   }
 
+  public Member secure() {
+    this.password = null;
+    this.authorities = null;
+    this.createdDate = null;
+    return this;
+  }
+
   public void userAuthority(Authority authority) {
     this.authorities = Arrays.asList(authority);
   }

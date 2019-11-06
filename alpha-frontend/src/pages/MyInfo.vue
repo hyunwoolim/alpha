@@ -17,7 +17,9 @@ export default {
     }
   },
   created () {
-    this.model.fetch()
+    if (this.$store.state.sMember.isAuthenticated) {
+      this.model.fetch()
+    }
   },
   methods: {
     save () {

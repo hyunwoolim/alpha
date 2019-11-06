@@ -7,8 +7,7 @@
 export default {
   name: 'App',
   created () {
-    this.$store.dispatch('sMember/checkSession')
-    console.log(this.$router)
+    // this.$store.dispatch('sMember/checkSession')
   }
 }
 </script>

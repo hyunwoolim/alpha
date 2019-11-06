@@ -20,4 +20,12 @@ public class SessionUtil {
     RequestContextHolder.currentRequestAttributes().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, ctx, RequestAttributes.SCOPE_SESSION);
   }
 
+  public static Member sessionMember() {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    if (auth.getPrincipal() instanceof Member) {
+      return (Member) auth.getPrincipal();
+    }
+    return null;
+  }
+
 }
