@@ -7,8 +7,8 @@ import java.io.Serializable;
 @Data
 public class FriendKey implements Serializable {
 
-  private String from;
+  private String id;
 
-  private String to;
+  private String friendId;
 
 }

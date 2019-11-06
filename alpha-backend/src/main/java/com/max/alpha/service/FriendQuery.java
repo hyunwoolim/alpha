@@ -2,6 +2,7 @@ package com.max.alpha.service;
 
 import com.google.common.base.Strings;
 import com.max.alpha.config.security.SessionUtil;
+import com.max.alpha.model.Friend;
 import com.max.alpha.model.FriendRequest;
 import com.max.alpha.model.Member;
 import com.max.alpha.repository.FriendRepository;
@@ -29,6 +30,23 @@ public class FriendQuery {
 
   @Autowired
   private FriendRequestRepository friendRequestRepository;
+
+  public List<Friend> findFriends () throws Exception {
+    Member me = SessionUtil.sessionMember();
+    if (me == null) {
+      throw new Exception("no.session");
+    }
+    List<Friend> friends = friendRepository.findFriends(me.getId());
+    List<Friend> results = new ArrayList<>();
+    for (Friend friend : friends) {
+      Optional<Member> friendOptional = memberRepository.findById(friend.getFriendId());
+      if (friendOptional.isPresent()) {
+        friend.setFriendMember(friendOptional.get());
+        results.add(friend);
+      }
+    }
+    return results;
+  }
 
   public List<FriendRequest> findRequests () throws Exception {
     Member me = SessionUtil.sessionMember();

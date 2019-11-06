@@ -21,7 +21,6 @@ import java.util.Date;
 public class FriendRequest {
 
   public FriendRequest(String fromId, String to) {
-    super();
     this.fromId = fromId;
     this.toId = to;
   }
