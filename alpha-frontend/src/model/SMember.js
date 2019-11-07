@@ -17,6 +17,10 @@ export class SMember extends Model {
     }
   }
 
+  get secure () {
+    this.password = ''
+  }
+
   options () {
   }
 }

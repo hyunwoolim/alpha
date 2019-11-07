@@ -77,13 +77,12 @@ export default {
       })
     },
     chat (data) {
-      console.log(data)
       this.$axios({
-        url: '/api/private/chat/start',
+        url: `/api/private/chat/start`,
         method: 'post',
         data: data
       }).then((res) => {
-        this.$router.push('/chat/' + res.data.id)
+        this.$router.push('/chat/' + res.data.roomId)
       })
     }
   }

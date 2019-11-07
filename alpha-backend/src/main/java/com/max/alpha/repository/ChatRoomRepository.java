@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface ChatRoomRepository extends CrudRepository<ChatRoom, String> {
 
-  @Query("SELECT c FROM ChatRoom c WHERE (c.host = :host AND c.guest = :guest) OR (c.host = :guest AND c.guest = :host)")
+  /*@Query("SELECT c FROM ChatRoom c WHERE ")
   ChatRoom findChatRoomByMembers(@Param("host") String host, @Param("guest") String guest);
 
-  @Query("SELECT c FROM ChatRoom c WHERE c.host = :id OR c.guest = :id")
-  List<ChatRoom> findChatRooms(@Param("id") String id);
+  @Query("SELECT c FROM ChatRoom c WHERE ")
+  List<ChatRoom> findChatRooms(@Param("id") String id);*/
 
 }

@@ -1,7 +1,25 @@
 <template>
   <q-page>
-    <div class="row justify-center q-pa-lg">
-      <q-input v-model="input" @keydown.enter="send"></q-input>
+    <div class="justify-center q-pa-xs">
+      <div v-for="(item, idx) in chatData" :key="idx">
+        <q-chat-message
+          class="q-ma-xs"
+          :name="item.member.name"
+          :text="[item.msg]"
+          :sent="$store.state.sMember.info.id === item.member.id"
+        ></q-chat-message>
+      </div>
+      <q-input
+        v-model="input"
+        class="full-width"
+        style="position: fixed; bottom: 0px;"
+        outlined
+        autogrow
+        @keydown.enter="send">
+        <template v-slot:after>
+          <q-btn round dense flat icon="send" @click="send"></q-btn>
+        </template>
+      </q-input>
     </div>
   </q-page>
 </template>
@@ -11,23 +29,20 @@ export default {
   name: 'PageChat',
   data () {
     return {
-      chatRoomId: '',
+      roomId: '',
       input: '',
-      socket: this.$socket
+      socket: this.$socket,
+      chatData: []
     }
   },
   created () {
-    const param = this.$route.params
-    console.log(param)
-    if (param && param.chatRoomId) {
-      this.chatRoomId = param.chatRoomId
-      this.$join(param.chatRoomId)
-      this.socket.on('chat', (data) => {
-        this.$q.notify({
-          timeout: 100,
-          color: 'positive',
-          message: data.msg
-        })
+    const me = this
+    const param = me.$route.params
+    if (param && param.roomId) {
+      me.roomId = param.roomId
+      me.$join(param.roomId)
+      me.socket.on('chat', (data) => {
+        me.chatData.push(data)
       })
     } else {
       history.back()
@@ -36,9 +51,20 @@ export default {
   mounted () {
   },
   methods: {
-    send () {
-      console.log('sss')
-      this.$sendMessage({ msg: '메세지', name: 'test', room: this.chatRoomId })
+    send (e) {
+      const me = this
+      if (!e.shiftKey && !me.input) {
+        e.preventDefault()
+      }
+      if (!e.shiftKey && me.$store.state.sMember.isAuthenticated && me.input && me.roomId) {
+        this.$sendMessage({
+          msg: me.input,
+          room: me.roomId,
+          member: me.$store.state.sMember.info
+        })
+        this.input = ''
+        e.preventDefault()
+      }
     }
   }
 }

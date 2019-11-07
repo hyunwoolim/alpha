@@ -2,13 +2,11 @@ package com.max.alpha.web;
 
 import com.max.alpha.model.ChatRoom;
 import com.max.alpha.model.data.FriendData;
+import com.max.alpha.model.enums.ChatRoomType;
 import com.max.alpha.service.ChatQuery;
 import com.max.alpha.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,10 +20,10 @@ public class ChatController {
   private ChatService chatService;
 
   @PostMapping(value = "/private/chat/start")
-  public ChatRoom chat(@RequestBody FriendData data) throws Exception {
-    ChatRoom chatRoom = chatQuery.findChatRoom(data.getId(), data.getFriendId());
+  public ChatRoom chat(@RequestBody FriendData data) {
+    ChatRoom chatRoom = chatQuery.findPrivateChatRoom(data);
     if (chatRoom == null) {
-      chatRoom = chatService.create(data.getId(), data.getFriendId());
+      chatRoom = chatService.createPrivateChatRoom(data);
     }
     return chatRoom;
   }

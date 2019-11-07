@@ -41,6 +41,10 @@ public class Member implements UserDetails {
   @Column(name = "PROFILE_IMAGE")
   private String profileImage;
 
+  @NonNull
+  @Column(name = "IS_PRIVATE")
+  private boolean isPrivate;
+
   @CreatedDate
   @Column(name = "CREATED_DATE", updatable = false)
   private Date createdDate;
