@@ -19,6 +19,8 @@ export default {
   mounted () {
   },
   methods: {
+    findChats () {
+    }
   }
 }
 </script>

@@ -27,8 +27,6 @@ public class FriendController {
 
   @PostMapping(value = "/private/friends/request")
   public void request(@RequestParam String toId) throws Exception {
-    System.out.println("toId");
-    System.out.println(toId);
     friendService.request(toId);
   }
 

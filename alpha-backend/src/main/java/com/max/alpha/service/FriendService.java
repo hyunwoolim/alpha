@@ -32,6 +32,9 @@ public class FriendService {
       throw new Exception("no.session");
     }
     Member to = memberRepository.findByEmail(toId);
+    if (me.getId().equals(to.getId())) {
+      throw new Exception("no.apply.to.me");
+    }
     if (to != null && !Strings.isNullOrEmpty(to.getId())) {
       if (friendRepository.findFriendRelationship(me.getId(), to.getId()) != null) {
         throw new Exception("already.friend");

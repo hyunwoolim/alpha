@@ -33,6 +33,10 @@ public class ChatQuery {
     if (me == null) {
       throw new Exception("no.session");
     }
+    List<ChatRoom> chatRooms = chatRoomRepository.findMyChatRooms(me.getId());
+    for (ChatRoom chatRoom : chatRooms) {
+
+    }
     /*List<ChatRoom> chatRooms = chatRoomRepository.findChatRooms(me.getId());
     List<ChatRoom> results = new ArrayList<>();
     for (ChatRoom chatRoom : chatRooms) {

@@ -11,8 +11,12 @@ public interface ChatRoomRepository extends CrudRepository<ChatRoom, String> {
 
   /*@Query("SELECT c FROM ChatRoom c WHERE ")
   ChatRoom findChatRoomByMembers(@Param("host") String host, @Param("guest") String guest);
+  */
 
-  @Query("SELECT c FROM ChatRoom c WHERE ")
-  List<ChatRoom> findChatRooms(@Param("id") String id);*/
+  @Query("SELECT c FROM ChatRoom c WHERE c.host = :host")
+  List<ChatRoom> findMyChatRooms(@Param("host") String host);
+
+  @Query("SELECT c FROM ChatRoom c WHERE c.roomId = :roomId")
+  List<ChatRoom> findChatRoomsByRoomId(@Param("roomId") String roomId);
 
 }

@@ -64,15 +64,15 @@
             <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
           </div>
         </q-item-label>
-        <!--<q-item clickable tag="a" target="_blank" @click="goPageMyInfo">
+        <q-item clickable tag="a" target="_blank" @click="goPageFriends">
           <q-item-section avatar>
             <q-icon name="person"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>내정보</q-item-label>
-            <q-item-label caption>My Info</q-item-label>
+            <q-item-label>{{$t('friend')}}</q-item-label>
+            <!-- <q-item-label caption>My Info</q-item-label> -->
           </q-item-section>
-        </q-item>-->
+        </q-item>
         <!--<q-item clickable tag="a" target="_blank" href="https://quasar.dev">
           <q-item-section avatar>
             <q-icon name="school"/>
@@ -170,6 +170,13 @@ export default {
     openURL,
     goPageMyInfo () {
       this.$router.push('/my-info').catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.leftDrawerOpen = false
+        }
+      })
+    },
+    goPageFriends () {
+      this.$router.push('/friends').catch((e) => {
         if (e.name === 'NavigationDuplicated') {
           this.leftDrawerOpen = false
         }

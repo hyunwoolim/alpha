@@ -47,6 +47,9 @@ export default {
         params: {
           toId: this.toId
         }
+      }).catch((e, t) => {
+        console.log(e.response.data.message)
+        console.log(t)
       })
     },
     requestList () {
