@@ -1,5 +1,4 @@
 const io = require('socket.io')(3000)
-console.log('1234')
 const chat = io.on('connection', (socket) => {
   socket.on('chat', (data) => {
     io.to(data.room).emit('chat', data)

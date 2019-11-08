@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="justify-center q-pa-xs">
+    <div ref="chatbox" class="justify-center q-pa-xs" style="margin-bottom: 56px;">
       <div v-for="(item, idx) in chatData" :key="idx">
         <q-chat-message
           class="q-ma-xs"
@@ -9,22 +9,22 @@
           :sent="$store.state.sMember.info.id === item.member.id"
         ></q-chat-message>
       </div>
-      <q-input
-        v-model="input"
-        class="full-width"
-        style="position: fixed; bottom: 0px;"
-        outlined
-        autogrow
-        @keydown.enter="send">
-        <template v-slot:after>
-          <q-btn round dense flat icon="send" @click="send"></q-btn>
-        </template>
-      </q-input>
     </div>
+    <q-input
+      ref="chatbar"
+      v-model="input"
+      class="full-width"
+      style="position: fixed; bottom: 0px;"
+      outlined
+      autogrow
+      @keydown.enter="send">
+      <template v-slot:after>
+        <q-btn round dense flat icon="send" @click="send"></q-btn>
+      </template>
+    </q-input>
   </q-page>
 </template>
 <script>
-
 export default {
   name: 'PageChat',
   data () {
@@ -49,6 +49,10 @@ export default {
     }
   },
   mounted () {
+  },
+  watch: {
+    chatData () {
+    }
   },
   methods: {
     send (e) {
