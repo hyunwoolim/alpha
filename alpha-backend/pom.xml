@@ -98,9 +98,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <mainClass>com.max.alpha.AlphaBackendApplication</mainClass>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>com.mysema.maven</groupId>
