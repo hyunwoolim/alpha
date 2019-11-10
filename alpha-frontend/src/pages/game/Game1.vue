@@ -12,8 +12,11 @@ export default {
   name: 'PageGame1',
   created () {
     const me = this
-    me.socket.on('chat', (data) => {
-      me.chatData.push(data)
+    const param = me.$route.params
+    me.roomId = param.roomId
+    me.$join(param.roomId)
+    me.socket.on('game1', (data) => {
+      console.log(data)
     })
   },
   mounted () {
@@ -21,14 +24,13 @@ export default {
   data () {
     return {
       roomId: '',
-      action: ''
+      action: '',
+      socket: this.$socket
     }
   },
   methods: {
     out (what) {
       const me = this
-      const param = me.$route.params
-      me.roomId = param.roomId
       me.action = what
       me.$game1({
         action: me.action,
