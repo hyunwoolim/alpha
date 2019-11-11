@@ -16,6 +16,8 @@ export default {
   login: '로그인',
   logout: '로그아웃',
   signup: '가입',
+  friends: '친구',
+  game1: '게임1',
   account: {
     already: '계정이 있습니다.'
   },

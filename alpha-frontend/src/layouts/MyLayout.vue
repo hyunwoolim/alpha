@@ -69,7 +69,16 @@
             <q-icon name="person"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{$t('friend')}}</q-item-label>
+            <q-item-label>{{$t('friends')}}</q-item-label>
+            <!-- <q-item-label caption>My Info</q-item-label> -->
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" @click="goPageGame1">
+          <q-item-section avatar>
+            <q-icon name="game"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{$t('game1')}}</q-item-label>
             <!-- <q-item-label caption>My Info</q-item-label> -->
           </q-item-section>
         </q-item>
@@ -177,6 +186,13 @@ export default {
     },
     goPageFriends () {
       this.$router.push('/friends').catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.leftDrawerOpen = false
+        }
+      })
+    },
+    goPageGame1 () {
+      this.$router.push('/games/game1/1').catch((e) => {
         if (e.name === 'NavigationDuplicated') {
           this.leftDrawerOpen = false
         }

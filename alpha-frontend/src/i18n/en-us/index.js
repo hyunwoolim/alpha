@@ -16,6 +16,8 @@ export default {
   login: 'Login',
   logout: 'Logout',
   signup: 'Sign Up',
+  friends: 'Friends',
+  game1: 'Game1',
   account: {
     already: 'Already have an account?'
   },

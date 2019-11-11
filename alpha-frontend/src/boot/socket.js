@@ -8,6 +8,9 @@ export default async ({ Vue }) => {
   Vue.prototype.$join = (test) => {
     socket.emit('joinRoom', test)
   }
+  Vue.prototype.$joinGameRoom = (roomId) => {
+    socket.emit('joinGameRoom', roomId)
+  }
   Vue.prototype.$game1 = ($data) => {
     socket.emit('game1', $data)
   }
