@@ -15,7 +15,7 @@ public class AlphaUserDetailsService implements UserDetailsService {
 
   @Override
   public Member loadUserByUsername(String username) throws UsernameNotFoundException {
-    Member member = memberRepository.findByEmail(username);
+    Member member = memberRepository.findByMid(username);
 
     return member;
   }

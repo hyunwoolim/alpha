@@ -10,7 +10,7 @@ export default {
     myinfo: '내정보'
   },
   welcome: '환영합니다.',
-  email: '이메일',
+  mid: '아이디',
   name: '이름',
   password: '비밀번호',
   login: '로그인',
@@ -24,7 +24,11 @@ export default {
   please: {
     login: '로그인하세요'
   },
+  'no.request.to.me': '나에게 요청할 수 없습니다.',
+  'input.friend.id': '친구 아이디를 입력하세요',
+  'input.request.friend': '친구 요청',
   'login.already': '이미 로그인 중 입니다.',
+  'login.failed': '아이디 또는 비밀번호가 일치하지 않습니다.',
   'login.succeeded': '로그인 되었습니다.',
   'logout.processing': '로그아웃 중...',
   'logout.succeeded': '로그아웃 되었습니다.',

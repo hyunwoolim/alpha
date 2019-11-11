@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-  @CrossOrigin(origins = "http://localhost:80")
-  @PostMapping({"/login-failed"})
+  @CrossOrigin(origins = "*")
+  @GetMapping("/login-failed")
   public String loginFailed() {
+    System.out.println("aaaaaa");
     return "/login?error=true";
   }
 
   @CrossOrigin(origins = "*")
-  @GetMapping({"/login-succeeded", "logout-succeeded"})
+  @GetMapping({"/login-succeeded", "/logout-succeeded"})
   public String success() {
     return "/";
   }

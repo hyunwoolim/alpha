@@ -10,7 +10,7 @@ export default {
     myinfo: 'Profile'
   },
   welcome: 'Welcome',
-  email: 'Email',
+  mid: 'Id',
   name: 'Name',
   password: 'Password',
   login: 'Login',

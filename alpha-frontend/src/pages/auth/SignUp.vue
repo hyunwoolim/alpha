@@ -3,7 +3,7 @@
     <div class="row justify-center q-pa-lg">
       <form>
         {{$t('welcome')}}
-        <q-input square outlined v-model="member.email" :label="$t('email')" class="q-mb-lg" type="email" :error="!!member.errors.email" :error-message="(!!member.errors.email) ? member.errors.email[0] : ''"></q-input>
+        <q-input square outlined v-model="member.mid" :label="$t('mid')" class="q-mb-lg" :error="!!member.errors.mid" :error-message="(!!member.errors.mid) ? member.errors.mid[0] : ''"></q-input>
         <q-input square outlined v-model="member.name" :label="$t('name')" class="q-mb-lg" :error="!!member.errors.name" :error-message="(!!member.errors.name) ? member.errors.name[0] : ''"></q-input>
         <q-input square outlined v-model="member.password" :label="$t('password')" :type="isPwd ? 'password' : 'text'" class="q-mb-lg" :error="!!member.errors.password" :error-message="(!!member.errors.password) ? member.errors.password[0] : ''">
           <template v-slot:append>

@@ -22,26 +22,21 @@ import java.util.UUID;
 public class Member implements UserDetails {
 
   @Id
-  @NonNull
   @Column(name = "ID", length = 36)
   private String id;
 
-  @NonNull
-  @Column(name = "EMAIL")
-  private String email;
+  @Column(name = "MID", unique = true)
+  private String mid;
 
-  @NonNull
   @Column(name = "$PASSWORD$")
   private String password;
 
-  @NonNull
   @Column(name = "NAME")
   private String name;
 
   @Column(name = "PROFILE_IMAGE")
   private String profileImage;
 
-  @NonNull
   @Column(name = "IS_PRIVATE")
   private boolean isPrivate;
 
@@ -58,7 +53,7 @@ public class Member implements UserDetails {
   }
 
   public Member define(MemberData data) {
-    this.email = data.getEmail();
+    this.mid = data.getMid();
     this.name = data.getName();
     this.password = data.getPassword();
     return this;
@@ -78,7 +73,7 @@ public class Member implements UserDetails {
 
   @Override
   public String getUsername() {
-    return this.email;
+    return this.mid;
   }
 
   @Override

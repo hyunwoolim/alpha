@@ -31,9 +31,12 @@ public class FriendService {
     if (me == null) {
       throw new Exception("no.session");
     }
-    Member to = memberRepository.findByEmail(toId);
+    Member to = memberRepository.findByMid(toId);
+    if (to == null) {
+      return;
+    }
     if (me.getId().equals(to.getId())) {
-      throw new Exception("no.apply.to.me");
+      throw new Exception("no.request.to.me");
     }
     if (to != null && !Strings.isNullOrEmpty(to.getId())) {
       if (friendRepository.findFriendRelationship(me.getId(), to.getId()) != null) {

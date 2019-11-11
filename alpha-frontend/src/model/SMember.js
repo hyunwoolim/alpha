@@ -4,7 +4,7 @@ export class SMember extends Model {
   defaults () {
     return {
       id: '',
-      email: '',
+      mid: '',
       password: '',
       name: ''
     }

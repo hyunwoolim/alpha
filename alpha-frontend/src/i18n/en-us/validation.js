@@ -2,13 +2,13 @@
 // so you can safely delete all default props below
 
 export default {
-  email: {
-    required: 'email Required!'
+  mid: {
+    required: 'Id Required!'
   },
   name: {
-    required: 'name Required!'
+    required: 'Name Required!'
   },
   password: {
-    required: 'password Required!'
+    required: 'Password Required!'
   }
 }

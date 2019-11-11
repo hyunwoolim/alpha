@@ -157,9 +157,7 @@ export default {
   async created () {
     await this.$store.dispatch('sMember/checkSession')
     if ((this.$route.meta) && (this.$route.meta.authorities) && (this.$route.meta.authorities.length > 0)) {
-      console.log('111')
       if (!this.$store.state.sMember.isAuthenticated) {
-        console.log('222')
         this.$router.push('/login')
       }
     }

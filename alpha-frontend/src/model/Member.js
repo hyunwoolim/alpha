@@ -6,7 +6,7 @@ export class Member extends Model {
   defaults () {
     return {
       id: '',
-      email: '',
+      mid: '',
       password: '',
       name: ''
     }
@@ -23,9 +23,9 @@ export class Member extends Model {
   }
   validation () {
     return {
-      email: (value, prop, model) => {
+      mid: (value, prop, model) => {
         if (_.isEmpty(value)) {
-          return $t('validation.email.required')
+          return $t('validation.mid.required')
         }
       },
       name: (value, prop, model) => {

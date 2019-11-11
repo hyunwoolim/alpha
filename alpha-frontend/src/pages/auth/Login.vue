@@ -3,7 +3,7 @@
     <div class="row justify-center q-pa-lg">
       <q-form>
         {{$t('login')}}
-        <q-input square outlined name="username" v-model="email" :label="$t('email')" class="q-mb-lg" type="email" @keyup.enter="login"></q-input>
+        <q-input square outlined name="username" v-model="mid" :label="$t('mid')" class="q-mb-lg" @keyup.enter="login"></q-input>
         <q-input square outlined name="password" v-model="password" :label="$t('password')" type="password" class="q-mb-lg" @keyup.enter="login"></q-input>
         <q-btn outline :label="$t('login')" @click="login"></q-btn>
         <q-space></q-space>
@@ -21,12 +21,13 @@ export default {
   data () {
     return {
       member: new Member(),
-      email: '',
+      mid: '',
       password: ''
     }
   },
-  created () {
+  async created () {
     const me = this
+    await this.$store.dispatch('sMember/checkSession')
     if (me.$store.state.sMember.isAuthenticated) {
       me.$q.notify({
         timeout: 500,
@@ -45,8 +46,8 @@ export default {
     },
     login () {
       const me = this
-      if (!me.email) {
-        me.$refs.email.focus()
+      if (!me.mid) {
+        me.$refs.mid.focus()
         return
       }
       if (!me.password) {
@@ -54,7 +55,7 @@ export default {
         return
       }
       let formData = new FormData()
-      formData.append('username', me.email)
+      formData.append('username', me.mid)
       formData.append('password', me.password)
       me.$axios({
         url: '/api/secure-login',
@@ -69,7 +70,11 @@ export default {
         this.$store.dispatch('sMember/checkSession')
         me.$router.push(res.data)
       }).catch((e) => {
-        console.log(e)
+        me.$q.notify({
+          timeout: 500,
+          color: 'negative',
+          message: $t('login.failed')
+        })
       })
     }
   }

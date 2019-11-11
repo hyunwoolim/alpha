@@ -31,12 +31,14 @@ module.exports = function (ctx) {
       components: [
         'QAvatar',
         'QBadge',
+        'QBar',
         'QBtn',
         'QBtnDropdown',
         'QCard',
         'QCardSection',
         'QCardActions',
         'QChatMessage',
+        'QDialog',
         'QDrawer',
         'QForm',
         'QHeader',
@@ -50,6 +52,7 @@ module.exports = function (ctx) {
         'QList',
         'QPageContainer',
         'QPage',
+        'QPageSticky',
         'QParallax',
         'QSpace',
         'QTable',
@@ -95,7 +98,7 @@ module.exports = function (ctx) {
       proxy: {
         // proxy all requests starting with /api to jsonplaceholder
         '/api': {
-          target: 'http://localhost:4040',
+          target: 'http://localhost:8080',
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''

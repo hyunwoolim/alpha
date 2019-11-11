@@ -2,8 +2,8 @@
 // so you can safely delete all default props below
 
 export default {
-  email: {
-    required: '이메일을 입력하세요.'
+  mid: {
+    required: '아이디를 입력하세요.'
   },
   name: {
     required: '이름을 입력하세요.'

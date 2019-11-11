@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface MemberRepository extends CrudRepository<Member, String> {
 
-  @Query("SELECT m FROM Member m WHERE m.email = :email")
-  Member findByEmail(@Param("email") String email);
+  @Query("SELECT m FROM Member m WHERE m.mid = :mid")
+  Member findByMid(@Param("mid") String mid);
 
 }
