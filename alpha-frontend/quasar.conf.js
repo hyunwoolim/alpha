@@ -52,6 +52,10 @@ module.exports = function (ctx) {
         'QPage',
         'QParallax',
         'QSpace',
+        'QTable',
+        'QTd',
+        'QTh',
+        'QTr',
         'QToolbar',
         'QToolbarTitle'
       ],

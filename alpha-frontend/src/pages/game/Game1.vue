@@ -20,6 +20,7 @@ export default {
     }
   },
   created () {
+    console.log(Math.floor(Math.random() * 3))
     const me = this
     const param = me.$route.params
     me.roomId = param.roomId
