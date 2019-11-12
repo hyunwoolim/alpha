@@ -14,16 +14,16 @@
         <q-toolbar-title class="absolute-center cursor-pointer" @click="goPageIndex">
           {{ $t('app.name') }}
         </q-toolbar-title>
-        <q-btn-dropdown label="Lang" class="absolute-right">
+        <q-btn-dropdown size="sm" label="Lang" class="absolute-right q-ma-sm" style="height: 20px">
           <q-list>
             <q-item clickable v-close-popup @click="changeLang('en-us')">
               <q-item-section>
-                <q-item-label><v-country-flag country="usa"></v-country-flag></q-item-label>
+                <q-item-label>English</q-item-label><!-- <v-country-flag country="usa"></v-country-flag> -->
               </q-item-section>
             </q-item>
             <q-item clickable v-close-popup @click="changeLang('ko-kr')">
               <q-item-section>
-                <q-item-label><v-country-flag country="kor"></v-country-flag></q-item-label>
+                <q-item-label>한글</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -197,7 +197,11 @@ export default {
       })
     },
     changeLang (lang) {
-      this.$i18n.locale = lang || this.$q.lang.getLocale()
+      const me = this
+      me.$i18n.locale = lang || me.$q.lang.getLocale()
+      if (me.$store.state.sMember.isAuthenticated) {
+        me.$axios.post('/api/private/member/lang')
+      }
     }
   }
 }
