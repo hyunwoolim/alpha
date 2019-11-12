@@ -19,7 +19,7 @@ public class ChatController {
   @Autowired
   private ChatService chatService;
 
-  @PostMapping(value = "/private/chat/start")
+  @PostMapping(value = "/api/private/chat/start")
   public ChatRoom chat(@RequestBody FriendData data) {
     ChatRoom chatRoom = chatQuery.findPrivateChatRoom(data);
     if (chatRoom == null) {
@@ -29,7 +29,7 @@ public class ChatController {
   }
 
 
-  @GetMapping(value = "/private/chats")
+  @GetMapping(value = "/api/private/chats")
   public List<ChatRoom> findChats() throws Exception {
     List<ChatRoom> chatRoom = chatQuery.findChatRooms();
     return chatRoom;

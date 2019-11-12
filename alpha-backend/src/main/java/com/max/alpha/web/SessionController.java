@@ -17,12 +17,12 @@ public class SessionController {
   @Autowired
   private MemberService memberService;
 
-  @GetMapping(value = "/public/session")
+  @GetMapping(value = "/api/public/session")
   public static Member session() {
     return SessionUtil.sessionMember();
   }
 
-  @PostMapping(value = "/private/session")
+  @PostMapping(value = "/api/private/session")
   public void save(@RequestBody MemberData data) {
     if (data != null && !Strings.isNullOrEmpty(data.getId())) {
       memberService.save(data);

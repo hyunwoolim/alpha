@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FileController {
 
-  @GetMapping(value = "/public/file")
+  @GetMapping(value = "/api/public/file")
   public String test() {
-    
+
     /*IGraphServiceClient graphClient =
       GraphServiceClient
         .builder()

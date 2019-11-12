@@ -15,12 +15,12 @@ public class MemberController {
   @Autowired
   private MemberQuery memberQuery;
 
-  @PostMapping(value = "/public/member")
+  @PostMapping(value = "/api/public/member")
   public void create(@RequestBody MemberData data) {
     memberService.create(data);
   }
 
-  @GetMapping(value = "/public/member/exists")
+  @GetMapping(value = "/api/public/member/exists")
   public boolean exists(@RequestParam("mid") String mid) {
     return memberQuery.exist(mid);
   }

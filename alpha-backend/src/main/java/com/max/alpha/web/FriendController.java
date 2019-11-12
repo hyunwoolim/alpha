@@ -19,27 +19,27 @@ public class FriendController {
   @Autowired
   private FriendQuery friendQuery;
 
-  @GetMapping(value = "/private/friends")
+  @GetMapping(value = "/api/private/friends")
   public List<Friend> findFriends() throws Exception {
     return friendQuery.findFriends();
   }
 
-  @PostMapping(value = "/private/friends/request")
+  @PostMapping(value = "/api/private/friends/request")
   public void request(@RequestParam String toId) throws Exception {
     friendService.request(toId);
   }
 
-  @PostMapping(value = "/private/friends/request/approve")
+  @PostMapping(value = "/api/private/friends/request/approve")
   public void approve(@RequestBody FriendRequestData data) throws Exception {
     friendService.approve(data);
   }
 
-  @PostMapping(value = "/private/friends/request/reject")
+  @PostMapping(value = "/api/private/friends/request/reject")
   public void reject(@RequestBody FriendRequestData data) throws Exception {
     friendService.reject(data);
   }
 
-  @GetMapping(value = "/private/friends/requests")
+  @GetMapping(value = "/api/private/friends/requests")
   public List<FriendRequest> requests() throws Exception {
     return friendQuery.findRequests();
   }

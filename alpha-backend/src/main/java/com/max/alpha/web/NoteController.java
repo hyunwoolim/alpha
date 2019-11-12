@@ -12,7 +12,7 @@ public class NoteController {
   @Autowired
   private MemberService memberService;
 
-  @PostMapping(value = "/private/notes")
+  @PostMapping(value = "/api/private/notes")
   public void findMyNotes() {
   }
 
