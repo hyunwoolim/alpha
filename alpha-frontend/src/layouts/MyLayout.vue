@@ -6,7 +6,7 @@
           flat
           dense
           round
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          @click="drawer = !drawer"
           aria-label="Menu"
         >
           <q-icon name="menu"/>
@@ -30,8 +30,45 @@
         </q-btn-dropdown>
       </q-toolbar>
     </q-header>
-
     <q-drawer
+        v-model="drawer"
+        :width="200"
+        :breakpoint="400"
+    >
+      <q-scroll-area style="height: calc(100% - 100px); margin-top: 100px; border-right: 1px solid #ddd">
+        <q-list padding>
+          <q-item active clickable v-ripple @click="goPageFriends">
+            <q-item-section avatar>
+              <q-icon name="people" />
+            </q-item-section>
+            <q-item-section>
+              {{ $t('friends') }}
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+      <div v-if="!$store.state.sMember.isAuthenticated" class="absolute-top text-center" style="height: 100px; border-right: 1px solid #ddd">
+        <q-btn :label="$t('login')" style="margin-top: 30px;" @click="goPageLogin"></q-btn>
+      </div>
+      <div v-if="$store.state.sMember.isAuthenticated" class="absolute-top" style="height: 100px; border-right: 1px solid #ddd">
+        <q-btn-dropdown flat no-caps :label="$store.state.sMember.info.name" class="member-name" style="margin: 20px 5px 5px 5px;">
+          <q-list>
+            <q-item clickable v-close-popup @click="goPageMyInfo">
+              <q-item-section>
+                <q-item-label>{{$t('page.myinfo')}}</q-item-label>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup @click="goPageLogout">
+              <q-item-section>
+                <q-item-label color="negative">{{$t('logout')}}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+      </div>
+    </q-drawer>
+
+    <!--<q-drawer
       v-model="leftDrawerOpen"
       bordered
       content-class="bg-grey-2"
@@ -58,9 +95,6 @@
                 </q-list>
               </q-btn-dropdown>
             </div>
-            <!--<div v-show="$store.state.sMember.isAuthenticated" class="cursor-pointer float-right" @click="goPageLogout">
-              {{$t('logout')}}
-            </div>-->
             <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
           </div>
         </q-item-label>
@@ -70,7 +104,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>{{$t('friends')}}</q-item-label>
-            <!-- <q-item-label caption>My Info</q-item-label> -->
           </q-item-section>
         </q-item>
         <q-item clickable tag="a" target="_blank" @click="goPageGame1">
@@ -79,67 +112,12 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>{{$t('game1')}}</q-item-label>
-            <!-- <q-item-label caption>My Info</q-item-label> -->
           </q-item-section>
         </q-item>
-        <!--<q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="school"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="code"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="chat"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="record_voice_over"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="rss_feed"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://facebook.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="public"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Facebook</q-item-label>
-            <q-item-label caption>@QuasarFramework</q-item-label>
-          </q-item-section>
-        </q-item>-->
       </q-list>
-    </q-drawer>
+    </q-drawer>-->
     <q-page-container>
-      <router-view/>
+      <router-view></router-view>
     </q-page-container>
   </q-layout>
 </template>
@@ -151,7 +129,7 @@ export default {
   name: 'MyLayout',
   data () {
     return {
-      leftDrawerOpen: false
+      drawer: false
     }
   },
   async created () {
@@ -172,38 +150,51 @@ export default {
     } else {
       next()
     }
+    this.drawer = false
   },
   methods: {
     openURL,
     goPageMyInfo () {
       this.$router.push('/my-info').catch((e) => {
         if (e.name === 'NavigationDuplicated') {
-          this.leftDrawerOpen = false
+          this.drawer = false
         }
       })
     },
     goPageFriends () {
       this.$router.push('/friends').catch((e) => {
         if (e.name === 'NavigationDuplicated') {
-          this.leftDrawerOpen = false
+          this.drawer = false
         }
       })
     },
     goPageGame1 () {
       this.$router.push('/games/game1/1').catch((e) => {
         if (e.name === 'NavigationDuplicated') {
-          this.leftDrawerOpen = false
+          this.drawer = false
         }
       })
     },
     goPageIndex () {
-      this.$router.push('/')
+      this.$router.push('/').catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.drawer = false
+        }
+      })
     },
     goPageLogin () {
-      this.$router.push('/login')
+      this.$router.push('/login').catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.drawer = false
+        }
+      })
     },
     goPageLogout () {
-      this.$router.push('/logout')
+      this.$router.push('/logout').catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.drawer = false
+        }
+      })
     },
     changeLang (lang) {
       this.$i18n.locale = lang || this.$q.lang.getLocale()

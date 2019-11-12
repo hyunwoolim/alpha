@@ -54,6 +54,7 @@ module.exports = function (ctx) {
         'QPage',
         'QPageSticky',
         'QParallax',
+        'QScrollArea',
         'QSpace',
         'QTable',
         'QTd',

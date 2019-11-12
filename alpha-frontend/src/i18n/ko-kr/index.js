@@ -18,12 +18,12 @@ export default {
   signup: '가입',
   friends: '친구',
   game1: '게임1',
-  account: {
-    already: '계정이 있습니다.'
-  },
   please: {
     login: '로그인하세요'
   },
+  requested: '요청하였습니다.',
+  'account.already': '계정이 있습니다.',
+  'account.exists.already': '계정이 이미 있습니다.',
   'no.request.to.me': '나에게 요청할 수 없습니다.',
   'input.friend.id': '친구 아이디를 입력하세요',
   'input.request.friend': '친구 요청',

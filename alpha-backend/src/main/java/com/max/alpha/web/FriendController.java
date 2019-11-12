@@ -6,11 +6,9 @@ import com.max.alpha.model.data.FriendRequestData;
 import com.max.alpha.service.FriendQuery;
 import com.max.alpha.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class FriendController {

@@ -1,9 +1,16 @@
 <template>
   <q-page class="q-pa-md q-gutter-md">
     <div>친구</div>
-    <div class="row" v-for="(item, idx) in friends.models" :key="idx">
+    <div
+        class="row"
+        v-for="(item, idx) in friends.models"
+        :key="idx"
+    >
       <span>{{(idx + 1) + ' ' + item.friendMember.name}}</span>
-      <q-btn label="chat" @click="chat(item)"></q-btn>
+      <q-btn
+          label="chat"
+          @click="chat(item)"
+      ></q-btn>
     </div>
     <!-- <q-input v-model="toId"></q-input>
     <q-btn label="request" @click="request"></q-btn>
@@ -13,22 +20,52 @@
       <q-btn label="approve" @click="approve(item)"></q-btn>
       <q-btn label="approve" @click="reject(item)"></q-btn>
     </div> -->
-    <q-dialog v-model="requestDialog" persistent>
+    <q-dialog
+        v-model="requestDialog"
+        persistent
+    >
       <q-card style="min-width: 350px">
         <q-card-section class="row items-center">
           <q-space></q-space>
-          <q-btn icon="close" flat round dense v-close-popup></q-btn>
+          <q-btn
+              icon="close"
+              flat
+              round
+              dense
+              v-close-popup
+          ></q-btn>
         </q-card-section>
         <q-card-section>
-          <q-input :label="$t('input.friend.id')" ref="toId" v-model="toId" :rules="[val => !!val || 'Field is required']" @keyup.enter="request" />
+          <q-input
+              :label="$t('input.friend.id')"
+              ref="toId"
+              v-model="toId"
+              :rules="[val => !!val || 'Field is required']"
+              @keyup.enter="request"
+          />
         </q-card-section>
-        <q-card-actions align="right" class="text-primary">
-          <q-btn flat :label="$t('input.request.friend')" @click="request"></q-btn>
+        <q-card-actions
+            align="right"
+            class="text-primary"
+        >
+          <q-btn
+              flat
+              :label="$t('input.request.friend')"
+              @click="request"
+          ></q-btn>
         </q-card-actions>
       </q-card>
     </q-dialog>
-    <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn color="primary" :label="$t('input.request.friend')" @click="showRequestDialog" no-caps></q-btn>
+    <q-page-sticky
+        position="bottom-right"
+        :offset="[18, 18]"
+    >
+      <q-btn
+          color="primary"
+          :label="$t('input.request.friend')"
+          @click="showRequestDialog"
+          no-caps
+      ></q-btn>
     </q-page-sticky>
   </q-page>
 </template>
@@ -37,6 +74,7 @@
 <script>
 
 import { Friends } from '../../model/Friend'
+import { $t } from '../../boot/i18n'
 
 export default {
   name: 'PageFriends',
@@ -54,9 +92,7 @@ export default {
   },
   methods: {
     findFriends () {
-      this.friends.fetch().then(() => {
-        console.log(this.friends)
-      })
+      this.friends.fetch()
     },
     showRequestDialog () {
       const me = this
@@ -64,19 +100,29 @@ export default {
       me.requestDialog = true
     },
     request () {
-      if (!this.$refs.toId.validate()) {
+      const me = this
+      if (!me.$refs.toId.validate()) {
         return
       }
-      this.$axios({
+      me.$axios({
         url: '/api/private/friends/request',
         method: 'post',
         params: {
-          toId: this.toId
+          toId: me.toId
         }
       }).then(() => {
-      }).catch((e, t) => {
-        console.log(e.response.data.message)
-        console.log(t)
+        me.$q.notify({
+          timeout: 3000,
+          color: 'positive',
+          message: $t('requested')
+        })
+        me.requestDialog = false
+      }).catch((e) => {
+        me.$q.notify({
+          timeout: 3000,
+          color: 'negative',
+          message: $t(e.response.data.message)
+        })
       })
     },
     requestList () {
@@ -84,7 +130,6 @@ export default {
         url: '/api/private/friends/requests',
         method: 'get'
       }).then((res) => {
-        console.log(res)
         this.requests = res.data
       })
     },
@@ -94,7 +139,6 @@ export default {
         method: 'post',
         data: data
       }).then((res) => {
-        console.log(res)
       })
     },
     reject (data) {
@@ -103,7 +147,6 @@ export default {
         method: 'post',
         data: data
       }).then((res) => {
-        console.log(res)
       })
     },
     chat (data) {

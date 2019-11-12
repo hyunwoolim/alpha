@@ -1,6 +1,7 @@
 import { Model, Collection } from 'vue-mc'
 import { $t } from '../boot/i18n'
 import _ from 'lodash'
+import axios from 'axios'
 
 export class Member extends Model {
   defaults () {
@@ -23,9 +24,13 @@ export class Member extends Model {
   }
   validation () {
     return {
-      mid: (value, prop, model) => {
+      mid: async (value, prop, model) => {
         if (_.isEmpty(value)) {
           return $t('validation.mid.required')
+        }
+        let memberExists = await axios.get(`/api/public/member/exists?mid=${value}`)
+        if (memberExists.data) {
+          return $t('account.exists.already')
         }
       },
       name: (value, prop, model) => {

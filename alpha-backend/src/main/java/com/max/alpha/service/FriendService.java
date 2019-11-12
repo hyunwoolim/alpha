@@ -33,7 +33,7 @@ public class FriendService {
     }
     Member to = memberRepository.findByMid(toId);
     if (to == null) {
-      return;
+      throw new Exception("member.not.exists");
     }
     if (me.getId().equals(to.getId())) {
       throw new Exception("no.request.to.me");

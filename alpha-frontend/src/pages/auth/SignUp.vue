@@ -2,10 +2,12 @@
   <q-page>
     <div class="row justify-center q-pa-lg">
       <form>
-        {{$t('welcome')}}
-        <q-input square outlined v-model="member.mid" :label="$t('mid')" class="q-mb-lg" :error="!!member.errors.mid" :error-message="(!!member.errors.mid) ? member.errors.mid[0] : ''"></q-input>
-        <q-input square outlined v-model="member.name" :label="$t('name')" class="q-mb-lg" :error="!!member.errors.name" :error-message="(!!member.errors.name) ? member.errors.name[0] : ''"></q-input>
-        <q-input square outlined v-model="member.password" :label="$t('password')" :type="isPwd ? 'password' : 'text'" class="q-mb-lg" :error="!!member.errors.password" :error-message="(!!member.errors.password) ? member.errors.password[0] : ''">
+        <div class="q-ma-lg text-center">
+          {{$t('welcome')}}
+        </div>
+        <q-input square outlined v-model="member.name" :label="$t('name')" class="q-mb-lg" :error="!!member.errors.name" :error-message="(!!member.errors.name) ? member.errors.name[0] : ''" @blur="member.validate()"></q-input>
+        <q-input square outlined v-model="member.mid" :label="$t('mid')" class="q-mb-lg" :error="!!member.errors.mid" :error-message="(!!member.errors.mid) ? member.errors.mid[0] : ''" @blur="member.validate()"></q-input>
+        <q-input square outlined v-model="member.password" :label="$t('password')" :type="isPwd ? 'password' : 'text'" class="q-mb-lg" :error="!!member.errors.password" :error-message="(!!member.errors.password) ? member.errors.password[0] : ''" @blur="member.validate()">
           <template v-slot:append>
             <q-icon
               :name="isPwd ? 'visibility_off' : 'visibility'"
