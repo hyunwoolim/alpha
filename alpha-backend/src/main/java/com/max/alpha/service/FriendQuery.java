@@ -65,5 +65,22 @@ public class FriendQuery {
     return results;
   }
 
+  public List<FriendRequest> findMyRequests () throws Exception {
+    Member me = SessionUtil.sessionMember();
+    if (me == null) {
+      throw new Exception("no.session");
+    }
+    List<FriendRequest> requests = friendRequestRepository.findMyRequests(me.getId());
+    List<FriendRequest> results = new ArrayList<>();
+    for (FriendRequest request : requests) {
+      Optional<Member> toMemberOptional = memberRepository.findById(request.getToId());
+      if (toMemberOptional.isPresent()) {
+        request.setToMember(toMemberOptional.get().secure());
+        results.add(request);
+      }
+    }
+    return results;
+  }
+
 
 }

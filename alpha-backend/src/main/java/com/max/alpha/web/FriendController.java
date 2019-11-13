@@ -8,7 +8,9 @@ import com.max.alpha.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class FriendController {
@@ -40,7 +42,12 @@ public class FriendController {
   }
 
   @GetMapping(value = "/api/private/friends/requests")
-  public List<FriendRequest> requests() throws Exception {
-    return friendQuery.findRequests();
+  public Map<String, List<FriendRequest>> requests() throws Exception {
+    List<FriendRequest> requests = friendQuery.findRequests();
+    List<FriendRequest> myRequests = friendQuery.findMyRequests();
+    Map<String, List<FriendRequest>> result = new HashMap<>();
+    result.put("requests", requests);
+    result.put("myRequests", myRequests);
+    return result;
   }
 }

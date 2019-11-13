@@ -5,8 +5,8 @@ server:
       timeout: 30m
 spring:
   datasource:
-    # url: jdbc:mysql://localhost:3306/alpha?characterEncoding=UTF-8&serverTimezone=UTC&&autoReconnection=true
-    url: jdbc:log4jdbc:mysql://133.186.217.231:3306/alpha?characterEncoding=UTF-8&serverTimezone=UTC&&autoReconnection=true
+    url: jdbc:log4jdbc:mysql://localhost:3306/alpha?characterEncoding=UTF-8&serverTimezone=UTC&autoReconnection=true
+    # url: jdbc:log4jdbc:mysql://133.186.217.231:3306/alpha?characterEncoding=UTF-8&serverTimezone=UTC&&autoReconnection=true
     username: alpha.manager
     password: iammax1!
     # driver-class-name: com.mysql.jdbc.Driver

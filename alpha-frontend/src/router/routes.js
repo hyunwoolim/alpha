@@ -12,7 +12,8 @@ const routes = [
       { name: 'friends', path: '/friends', component: () => import('pages/friend/Friends.vue'), meta: { authorities: ['USER1'] } },
       { name: 'game1', path: '/games/game1/:roomId', component: () => import('pages/game/Game1.vue') },
       { name: 'chats', path: '/chats', component: () => import('pages/chat/Chats.vue') },
-      { name: 'chat', path: '/chat/:roomId', component: () => import('pages/chat/Chat.vue') }
+      { name: 'chat', path: '/chat/:roomId', component: () => import('pages/chat/Chat.vue') },
+      { name: 'board', path: '/board', component: () => import('pages/board/Board.vue') }
     ]
   },
   {

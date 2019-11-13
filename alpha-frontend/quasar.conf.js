@@ -7,6 +7,7 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'axios',
+      'moment',
       'socket'
       // 'quasar-lang-pack'
     ],
@@ -55,6 +56,7 @@ module.exports = function (ctx) {
         'QPageSticky',
         'QParallax',
         'QScrollArea',
+        'QSlideTransition',
         'QSpace',
         'QTable',
         'QTd',
