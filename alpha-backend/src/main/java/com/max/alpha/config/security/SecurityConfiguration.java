@@ -20,8 +20,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       .failureUrl("/login-failed")
       .and()
       .logout()
-      .logoutUrl("/logout")
-      .logoutSuccessUrl("/");
+      .logoutUrl("/api/logout")
+      .logoutSuccessUrl("/logout-succeeded");
     http.csrf().disable();
     http.cors().disable();
   }
