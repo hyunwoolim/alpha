@@ -11,10 +11,10 @@
         >
           <q-icon name="menu"/>
         </q-btn>
-        <q-toolbar-title class="absolute-center cursor-pointer" @click="goPageIndex">
+        <q-toolbar-title class="absolute-center cursor-pointer sign-font text-h4" @click="goPageIndex">
           {{ $t('app.name') }}
         </q-toolbar-title>
-        <q-btn-dropdown size="sm" label="Lang" class="absolute-right q-ma-sm" style="height: 20px">
+        <q-btn-dropdown flat size="sm" label="Lang" class="absolute-right q-ma-sm" style="height: 20px">
           <q-list>
             <q-item clickable v-close-popup @click="changeLang('en-us')">
               <q-item-section>
@@ -39,10 +39,18 @@
         <q-list padding>
           <q-item active clickable v-ripple @click="goPageFriends">
             <q-item-section avatar>
-              <q-icon name="people" />
+              <q-icon name="ion-ios-people" />
             </q-item-section>
             <q-item-section>
               {{ $t('friends') }}
+            </q-item-section>
+          </q-item>
+          <q-item active clickable v-ripple @click="goPageGames">
+            <q-item-section avatar>
+              <q-icon name="ion-logo-game-controller-b"></q-icon>
+            </q-item-section>
+            <q-item-section>
+              {{ $t('game') }}
             </q-item-section>
           </q-item>
         </q-list>
@@ -53,9 +61,9 @@
       <div v-if="$store.state.sMember.isAuthenticated" class="absolute-top" style="height: 100px; border-right: 1px solid #ddd">
         <q-btn-dropdown flat no-caps :label="$store.state.sMember.info.name" class="member-name" style="margin: 20px 5px 5px 5px;">
           <q-list>
-            <q-item clickable v-close-popup @click="goPageMyInfo">
+            <q-item clickable v-close-popup @click="goPageProfile">
               <q-item-section>
-                <q-item-label>{{$t('page.myinfo')}}</q-item-label>
+                <q-item-label>{{$t('page.profile')}}</q-item-label>
               </q-item-section>
             </q-item>
             <q-item clickable v-close-popup @click="goPageLogout">
@@ -67,55 +75,6 @@
         </q-btn-dropdown>
       </div>
     </q-drawer>
-
-    <!--<q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
-      <q-list>
-        <q-item-label header>
-          <div class="row">
-            <div v-show="!$store.state.sMember.isAuthenticated" class="cursor-pointer" @click="goPageLogin">
-              {{$t('please.login')}}
-            </div>
-            <div v-show="$store.state.sMember.isAuthenticated" style="margin: -10px 0px 0px -10px;">
-              <q-btn-dropdown flat no-caps :label="$store.state.sMember.info.name" class="member-name">
-                <q-list>
-                  <q-item clickable v-close-popup @click="goPageMyInfo">
-                    <q-item-section>
-                      <q-item-label>{{$t('page.myinfo')}}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                  <q-item clickable v-close-popup @click="goPageLogout">
-                    <q-item-section>
-                      <q-item-label color="negative">{{$t('logout')}}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-btn-dropdown>
-            </div>
-            <q-icon class="absolute-right cursor-pointer" size="lg" style="margin: 6px;" name="chevron_left" @click="leftDrawerOpen = !leftDrawerOpen"></q-icon>
-          </div>
-        </q-item-label>
-        <q-item clickable tag="a" target="_blank" @click="goPageFriends">
-          <q-item-section avatar>
-            <q-icon name="person"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{$t('friends')}}</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" @click="goPageGame1">
-          <q-item-section avatar>
-            <q-icon name="game"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{$t('game1')}}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>-->
     <q-page-container>
       <router-view></router-view>
     </q-page-container>
@@ -154,8 +113,8 @@ export default {
   },
   methods: {
     openURL,
-    goPageMyInfo () {
-      this.$router.push('/my-info').catch((e) => {
+    goPageProfile () {
+      this.$router.push('/profile').catch((e) => {
         if (e.name === 'NavigationDuplicated') {
           this.drawer = false
         }
@@ -168,8 +127,8 @@ export default {
         }
       })
     },
-    goPageGame1 () {
-      this.$router.push('/games/game1/1').catch((e) => {
+    goPageGames () {
+      this.$router.push('/games/games').catch((e) => {
         if (e.name === 'NavigationDuplicated') {
           this.drawer = false
         }

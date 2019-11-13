@@ -7,7 +7,7 @@ export default {
     name: '앱'
   },
   page: {
-    myinfo: '내정보'
+    profile: '프로필'
   },
   welcome: '환영합니다.',
   mid: '아이디',

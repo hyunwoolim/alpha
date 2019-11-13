@@ -21,6 +21,7 @@ public class ChatController {
 
   @PostMapping(value = "/api/private/chat/start")
   public ChatRoom chat(@RequestBody FriendData data) {
+    System.out.println(data);
     ChatRoom chatRoom = chatQuery.findPrivateChatRoom(data);
     if (chatRoom == null) {
       chatRoom = chatService.createPrivateChatRoom(data);

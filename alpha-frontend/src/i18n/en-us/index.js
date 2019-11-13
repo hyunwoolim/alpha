@@ -7,7 +7,7 @@ export default {
     name: 'App'
   },
   page: {
-    myinfo: 'Profile'
+    profile: 'Profile'
   },
   welcome: 'Welcome',
   mid: 'Id',

@@ -1,40 +1,60 @@
 <template>
   <q-page class="q-pa-md q-gutter-md">
-    <div>친구 <q-icon name="autorenew" @click="findFriends"></q-icon></div>
-    <div
-        class="row"
-        v-for="(item, idx) in friends.models"
-        :key="idx"
-    >
-      <span>{{(idx + 1) + ' ' + item.friendMember.name}}</span>
-      <q-btn
-          label="chat"
-          @click="chat(item)"
-      ></q-btn>
+    <div>
+      <span class="text-h6">{{ $t('friend') }}</span>
+      <q-btn flat round size="xs" :loading="syncing" color="primary" @click="search" icon="ion-sync"></q-btn>
     </div>
-    <div @click="fromRequestsVisible = !fromRequestsVisible">{{ '요청받은 목록 (' + requests.requests.length + ')'}} <q-icon :name="fromRequestsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"></q-icon></div>
+    <div class="cursor-pointer" @click="fromRequestsVisible = !fromRequestsVisible">{{ '요청받은 목록 (' + ((requests.from) ? requests.from.length : 0) + ')'}} <q-icon :name="fromRequestsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"></q-icon></div>
     <q-slide-transition>
       <div v-show="fromRequestsVisible">
-        <div class="row" v-for="(item, idx) in requests.requests" :key="idx">
+        <div class="row" v-for="(item, idx) in requests.from" :key="idx">
           <div class="row">
             {{ item.fromMember.name }}
             <q-btn :label="$t('approve')" @click="approve(item)" size="xs" no-caps></q-btn>
             <q-btn :label="$t('reject')" @click="reject(item)" size="xs" no-caps></q-btn>
           </div>
         </div>
+        <div v-show="!requests.from"> No Data </div>
       </div>
     </q-slide-transition>
-    <div @click="toRequestsVisible = !toRequestsVisible">{{ '요청보낸 목록 (' + requests.myRequests.length + ')'}} <q-icon :name="toRequestsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"></q-icon></div>
+    <div class="cursor-pointer" @click="toRequestsVisible = !toRequestsVisible">{{ '요청보낸 목록 (' + ((requests.to) ? requests.to.length : 0) + ')'}} <q-icon :name="toRequestsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"></q-icon></div>
     <q-slide-transition>
       <div v-show="toRequestsVisible">
-        <div class="row" v-for="(item, idx) in requests.myRequests" :key="idx">
+        <div class="row" v-for="(item, idx) in requests.to" :key="idx">
           <div class="row">
             <span class="text-subtitle2 q-mr-sm">{{ item.toMember.name }}</span> {{ $moment(item.requestDate).fromNow() }}
           </div>
         </div>
+        <div v-show="!requests.to"> No Data </div>
       </div>
     </q-slide-transition>
-
+    <div class="cursor-pointer" @click="friendsVisible = !friendsVisible">{{ '친구 목록 (' + ((friends.model) ? friends.model.length : 0) + ')'}} <q-icon :name="friendsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"></q-icon></div>
+    <q-slide-transition>
+      <q-table v-show="friendsVisible"
+          :data="friends.models"
+          :columns="columns"
+          hide-header
+          hide-bottom
+          flat
+          :dense="$q.screen.lt.md"
+      >
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="name" :props="props">
+              {{ props.row.friendMember.name }}
+            </q-td>
+            <q-td key="chat" :props="props">
+              <q-btn
+                  flat
+                  round
+                  label="chat"
+                  @click="chat(props.row)"
+              ></q-btn>
+            </q-td>
+          </q-tr>
+        </template>
+      </q-table>
+    </q-slide-transition>
     <q-dialog
         v-model="requestDialog"
         persistent
@@ -101,16 +121,37 @@ export default {
       friends: new Friends(),
       requests: {},
       fromRequestsVisible: false,
-      toRequestsVisible: false
+      toRequestsVisible: false,
+      friendsVisible: true,
+      syncing: false,
+      columns: [
+        {
+          name: 'name',
+          required: true,
+          align: 'left',
+          field: 'friendMember'
+        },
+        {
+          name: 'chat',
+          required: true,
+          align: 'right',
+          field: 'friendMember'
+        }
+      ]
     }
   },
   created () {
-    this.findFriends()
+    this.search()
   },
   methods: {
-    findFriends () {
-      this.friends.fetch()
-      this.requestList()
+    async search () {
+      const me = this
+      me.syncing = true
+      await me.friends.fetch()
+      let requestsResponse = await me.$axios.get('/api/private/friends/requests')
+      console.log(requestsResponse)
+      this.requests = requestsResponse.data
+      me.syncing = false
     },
     showRequestDialog () {
       const me = this
@@ -143,14 +184,7 @@ export default {
         })
       })
     },
-    requestList () {
-      this.$axios({
-        url: '/api/private/friends/requests',
-        method: 'get'
-      }).then((res) => {
-        console.log(res.data)
-        this.requests = res.data
-      })
+    findRequests () {
     },
     approve (data) {
       const me = this

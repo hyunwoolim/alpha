@@ -23,7 +23,7 @@ import { SMember } from '../model/SMember'
 import { $t } from '../boot/i18n'
 
 export default {
-  name: 'PageMyInfo',
+  name: 'PageProfile',
   data () {
     return {
       model: new SMember()

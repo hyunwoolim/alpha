@@ -46,8 +46,8 @@ public class FriendController {
     List<FriendRequest> requests = friendQuery.findRequests();
     List<FriendRequest> myRequests = friendQuery.findMyRequests();
     Map<String, List<FriendRequest>> result = new HashMap<>();
-    result.put("requests", requests);
-    result.put("myRequests", myRequests);
+    result.put("from", requests);
+    result.put("to", myRequests);
     return result;
   }
 }

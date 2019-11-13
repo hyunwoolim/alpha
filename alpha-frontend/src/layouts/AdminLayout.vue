@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     openURL,
-    goPageMyInfo () {
-      this.$router.push('/my-info')
+    goPageProfile () {
+      this.$router.push('/profile')
     },
     goPageIndex () {
       this.$router.push('/')

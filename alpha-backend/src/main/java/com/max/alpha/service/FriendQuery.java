@@ -41,7 +41,7 @@ public class FriendQuery {
     for (Friend friend : friends) {
       Optional<Member> friendOptional = memberRepository.findById(friend.getFriendId());
       if (friendOptional.isPresent()) {
-        friend.setFriendMember(friendOptional.get());
+        friend.setFriendMember(friendOptional.get().secure());
         results.add(friend);
       }
     }
