@@ -13,6 +13,9 @@ public interface FriendRequestRepository extends CrudRepository<FriendRequest, F
   @Query("SELECT r FROM FriendRequest r WHERE r.toId = :id")
   List<FriendRequest> findFriendRequests(@Param("id") String id);
 
+  @Query("SELECT r FROM FriendRequest r WHERE r.fromId = :id")
+  List<FriendRequest> findMyRequests(@Param("id") String id);
+
   @Query("SELECT r FROM FriendRequest r WHERE r.fromId = :fromId AND r.toId = :id")
   FriendRequest findFriendRequests(@Param("fromId") String fromId, @Param("id") String id);
 

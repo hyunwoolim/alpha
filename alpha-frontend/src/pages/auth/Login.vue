@@ -62,13 +62,32 @@ export default {
         method: 'post',
         data: formData
       }).then((res) => {
-        me.$q.notify({
-          timeout: 500,
-          color: 'positive',
-          message: $t('login.succeeded')
-        })
         this.$store.dispatch('sMember/checkSession')
-        me.$router.push(res.data)
+        me.$router.push(res.data).then((res) => {
+          if (me.$route.query.error) {
+            me.$q.notify({
+              timeout: 500,
+              color: 'negative',
+              message: $t('login.failed')
+            })
+          }
+        }).catch((e) => {
+          if (e.name === 'NavigationDuplicated') {
+            if (me.$route.query.error) {
+              me.$q.notify({
+                timeout: 500,
+                color: 'negative',
+                message: $t('login.failed')
+              })
+            }
+          } else {
+            me.$q.notify({
+              timeout: 500,
+              color: 'negative',
+              message: $t('error')
+            })
+          }
+        })
       }).catch((e) => {
         me.$q.notify({
           timeout: 500,

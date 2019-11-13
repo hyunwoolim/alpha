@@ -40,7 +40,7 @@ export default {
     const param = me.$route.params
     if (param && param.roomId) {
       me.roomId = param.roomId
-      me.$join(param.roomId)
+      me.$joinChatRoom(param.roomId)
       me.socket.on('chat', (data) => {
         me.chatData.push(data)
       })

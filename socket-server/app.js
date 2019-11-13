@@ -3,7 +3,7 @@ const chat = io.on('connection', (socket) => {
   socket.on('chat', (data) => {
     io.to(data.room).emit('chat', data)
   })
-  socket.on('joinRoom', (data) => {
+  socket.on('joinChatRoom', (data) => {
     socket.join(data, () => {
     })
   })

@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-pa-md q-gutter-md">
-    <div>친구</div>
+    <div>친구 <q-icon name="autorenew" @click="findFriends"></q-icon></div>
     <div
         class="row"
         v-for="(item, idx) in friends.models"
@@ -12,14 +12,29 @@
           @click="chat(item)"
       ></q-btn>
     </div>
-    <!-- <q-input v-model="toId"></q-input>
-    <q-btn label="request" @click="request"></q-btn>
-    <div>요청받은 목록</div>
-    <div class="row" v-for="(item, idx) in requests" :key="idx">
-      <span>{{item.fromMember.name}}</span>
-      <q-btn label="approve" @click="approve(item)"></q-btn>
-      <q-btn label="approve" @click="reject(item)"></q-btn>
-    </div> -->
+    <div @click="fromRequestsVisible = !fromRequestsVisible">{{ '요청받은 목록 (' + requests.requests.length + ')'}} <q-icon :name="fromRequestsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"></q-icon></div>
+    <q-slide-transition>
+      <div v-show="fromRequestsVisible">
+        <div class="row" v-for="(item, idx) in requests.requests" :key="idx">
+          <div class="row">
+            {{ item.fromMember.name }}
+            <q-btn :label="$t('approve')" @click="approve(item)" size="xs" no-caps></q-btn>
+            <q-btn :label="$t('reject')" @click="reject(item)" size="xs" no-caps></q-btn>
+          </div>
+        </div>
+      </div>
+    </q-slide-transition>
+    <div @click="toRequestsVisible = !toRequestsVisible">{{ '요청보낸 목록 (' + requests.myRequests.length + ')'}} <q-icon :name="toRequestsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"></q-icon></div>
+    <q-slide-transition>
+      <div v-show="toRequestsVisible">
+        <div class="row" v-for="(item, idx) in requests.myRequests" :key="idx">
+          <div class="row">
+            <span class="text-subtitle2 q-mr-sm">{{ item.toMember.name }}</span> {{ $moment(item.requestDate).fromNow() }}
+          </div>
+        </div>
+      </div>
+    </q-slide-transition>
+
     <q-dialog
         v-model="requestDialog"
         persistent
@@ -38,6 +53,7 @@
         <q-card-section>
           <q-input
               :label="$t('input.friend.id')"
+              prefix="@"
               ref="toId"
               v-model="toId"
               :rules="[val => !!val || 'Field is required']"
@@ -83,16 +99,18 @@ export default {
       toId: '',
       requestDialog: false,
       friends: new Friends(),
-      requests: []
+      requests: {},
+      fromRequestsVisible: false,
+      toRequestsVisible: false
     }
   },
   created () {
     this.findFriends()
-    this.requestList()
   },
   methods: {
     findFriends () {
       this.friends.fetch()
+      this.requestList()
     },
     showRequestDialog () {
       const me = this
@@ -130,23 +148,28 @@ export default {
         url: '/api/private/friends/requests',
         method: 'get'
       }).then((res) => {
+        console.log(res.data)
         this.requests = res.data
       })
     },
     approve (data) {
-      this.$axios({
+      const me = this
+      me.$axios({
         url: '/api/private/friends/request/approve',
         method: 'post',
         data: data
       }).then((res) => {
+        me.requestList()
       })
     },
     reject (data) {
-      this.$axios({
+      const me = this
+      me.$axios({
         url: '/api/private/friends/request/reject',
         method: 'post',
         data: data
       }).then((res) => {
+        me.requestList()
       })
     },
     chat (data) {
