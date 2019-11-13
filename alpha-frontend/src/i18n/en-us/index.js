@@ -4,7 +4,7 @@ import validation from './validation'
 
 export default {
   app: {
-    name: 'Alpha'
+    name: 'App'
   },
   page: {
     myinfo: 'Profile'

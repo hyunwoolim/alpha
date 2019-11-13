@@ -4,7 +4,7 @@ import validation from './validation'
 
 export default {
   app: {
-    name: '알파'
+    name: '앱'
   },
   page: {
     myinfo: '내정보'
@@ -22,6 +22,7 @@ export default {
     login: '로그인하세요'
   },
   requested: '요청하였습니다.',
+  'member.not.exists': '사용자가 없습니다.',
   'account.already': '계정이 있습니다.',
   'account.exists.already': '계정이 이미 있습니다.',
   'no.request.to.me': '나에게 요청할 수 없습니다.',
