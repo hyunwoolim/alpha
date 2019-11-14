@@ -9,11 +9,7 @@ const chat = io.on('connection', (socket) => {
   })
   socket.on('disconnecting', (reason) => {
     let rooms = Object.keys(socket.rooms);
-    console.log(rooms)
-    console.log(rooms[0])
     let count = io.sockets.adapter.rooms[rooms[0]].length
-    console.log(io.sockets.adapter.rooms)
-    console.log(count)
     io.to(rooms[0]).emit('joinAlarm', count - 1)
   })
   socket.on('joinGameRoom', (data) => {

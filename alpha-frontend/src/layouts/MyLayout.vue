@@ -12,7 +12,8 @@
           <q-icon name="menu"/>
         </q-btn>
         <q-toolbar-title class="absolute-center cursor-pointer sign-font text-h4" @click="goPageIndex">
-          {{ $t('app.name') }}
+          <img class="q-mt-sm q-pt-xs" src="~assets/logo_w.png" height="45px;">
+          <!--{{ $t('app.name') }}-->
         </q-toolbar-title>
         <q-btn-dropdown flat size="sm" label="Lang" class="absolute-right q-ma-sm" style="height: 20px">
           <q-list>

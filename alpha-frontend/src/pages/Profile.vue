@@ -10,10 +10,20 @@
         v-model="model.name"
         :label="$t('name')"
     ></q-input>
-    <q-btn
-        label="save"
+    <div class="text-center">
+      <q-btn
+        color="primary"
+        no-caps
+        :label="$t('update.info')"
         @click="save"
-    ></q-btn>
+      ></q-btn>
+      <q-btn
+        color="primary"
+        no-caps
+        :label="$t('update.password')"
+        @click="save"
+      ></q-btn>
+    </div>
   </q-page>
 </template>
 <style>

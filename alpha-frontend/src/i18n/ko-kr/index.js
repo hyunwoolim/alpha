@@ -22,6 +22,11 @@ export default {
     login: '로그인하세요'
   },
   requested: '요청하였습니다.',
+  save: '저장',
+  update: {
+    info: '정보 변경',
+    password: '비밀번호 변경'
+  },
   'member.not.exists': '사용자가 없습니다.',
   'account.already': '계정이 있습니다.',
   'account.exists.already': '계정이 이미 있습니다.',

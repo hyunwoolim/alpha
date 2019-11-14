@@ -1,8 +1,7 @@
 <template>
-  <q-page class="q-pa-md q-gutter-md">
+  <q-page class="q-pa-lg">
     <div v-show="$store.state.sMember.isAuthenticated">
       {{ $store.state.sMember.info.name }} 환영합니다.
-      {{ $store.state.sMember.info }}
     </div>
   </q-page>
 </template>
@@ -11,7 +10,14 @@
 <script>
 export default {
   name: 'PageIndex',
-  mounted () {
+  created () {
+    window.addEventListener('load', function () {
+      Notification.requestPermission(function (status) {
+        if (Notification.permission !== status) {
+          Notification.permission = status
+        }
+      })
+    })
   }
 }
 </script>

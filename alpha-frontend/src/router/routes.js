@@ -10,6 +10,7 @@ const routes = [
       { name: 'logout', path: '/logout', component: () => import('pages/auth/Logout.vue') },
       { name: 'signup', path: '/signup', component: () => import('pages/auth/SignUp.vue') },
       { name: 'friends', path: '/friends', component: () => import('pages/friend/Friends.vue'), meta: { authorities: ['USER1'] } },
+      { name: 'games', path: '/games', component: () => import('pages/game/Games.vue') },
       { name: 'game1', path: '/games/game1/:roomId', component: () => import('pages/game/Game1.vue') },
       { name: 'chats', path: '/chats', component: () => import('pages/chat/Chats.vue') },
       { name: 'chat', path: '/chat/:roomId', component: () => import('pages/chat/Chat.vue') },

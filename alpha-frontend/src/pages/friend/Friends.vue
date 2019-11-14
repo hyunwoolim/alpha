@@ -42,6 +42,7 @@
           <q-tr :props="props">
             <q-td key="name" :props="props">
               {{ props.row.friendMember.name }}
+              <span class="text-caption">{{ '(@' + props.row.friendMember.mid + ')' }}</span>
             </q-td>
             <q-td key="chat" :props="props">
               <q-btn
@@ -147,9 +148,12 @@ export default {
     async search () {
       const me = this
       me.syncing = true
-      await me.friends.fetch()
-      let requestsResponse = await me.$axios.get('/api/private/friends/requests')
-      console.log(requestsResponse)
+      await me.friends.fetch().catch((e) => {
+        console.log('aaa1')
+      })
+      let requestsResponse = await me.$axios.get('/api/private/friends/requests').catch((e) => {
+        console.log('aaa2')
+      })
       this.requests = requestsResponse.data
       me.syncing = false
     },
