@@ -54,6 +54,14 @@
               {{ $t('game') }}
             </q-item-section>
           </q-item>
+          <q-item active clickable v-ripple @click="goPageBoard">
+            <q-item-section avatar>
+              <q-icon name="ion-ios-paper"></q-icon>
+            </q-item-section>
+            <q-item-section>
+              {{ $t('board') }}
+            </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
       <div v-if="!$store.state.sMember.isAuthenticated" class="absolute-top text-center" style="height: 100px; border-right: 1px solid #ddd">
@@ -130,6 +138,13 @@ export default {
     },
     goPageGames () {
       this.$router.push('/games/games').catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.drawer = false
+        }
+      })
+    },
+    goPageBoard () {
+      this.$router.push({ name: 'board' }).catch((e) => {
         if (e.name === 'NavigationDuplicated') {
           this.drawer = false
         }

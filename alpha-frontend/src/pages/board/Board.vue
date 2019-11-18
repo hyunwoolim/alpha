@@ -2,7 +2,6 @@
   <q-page>
     <div class="row justify-center q-pa-lg">
       <q-table
-          :dense="$q.screen.lt.md"
           title="Treats"
           :data="data"
           :columns="columns"

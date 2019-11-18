@@ -18,6 +18,8 @@ export default {
   signup: '가입',
   friends: '친구',
   game1: '게임1',
+  game: '게임',
+  board: '게시판',
   please: {
     login: '로그인하세요'
   },
