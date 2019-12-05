@@ -19,6 +19,9 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 10000MB
 alpha:
   file:
     basedir: D:/workspace/efiles

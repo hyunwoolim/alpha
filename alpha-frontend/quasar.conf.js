@@ -64,6 +64,7 @@ module.exports = function (ctx) {
         'QTr',
         'QToolbar',
         'QToolbarTitle',
+        'QUploader',
         'QSpinnerFacebook'
       ],
       directives: [

@@ -15,7 +15,8 @@ const routes = [
       { name: 'chats', path: '/chats', component: () => import('pages/chat/Chats.vue') },
       { name: 'chat', path: '/chat/:roomId', component: () => import('pages/chat/Chat.vue') },
       { name: 'board', path: '/board', component: () => import('pages/board/Board.vue') },
-      { name: 'video', path: '/video', component: () => import('pages/video/Videos.vue') }
+      { name: 'video', path: '/video', component: () => import('pages/video/Videos.vue') },
+      { name: 'video-input', path: '/video/upload', component: () => import('pages/video/VideoInput.vue') }
     ]
   },
   {

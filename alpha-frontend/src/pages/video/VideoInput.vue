@@ -1,8 +1,11 @@
 <template>
   <q-page>
-    <vue-plyr>
-      <video src="/api/download/e1cd6dd8-1ca2-4d8d-aae9-218becea7c67"></video>
-    </vue-plyr>
+    <q-input outlined v-model="model.title" :label="$t('title')"></q-input>
+    <q-uploader
+      field-name="file"
+      url="/api/upload"
+      style="max-width: 300px"
+    />
   </q-page>
 </template>
 <style>
@@ -12,6 +15,9 @@ export default {
   name: 'PageVideos',
   data () {
     return {
+      model: {
+        title: ''
+      }
     }
   },
   created () {
