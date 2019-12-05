@@ -3,7 +3,7 @@
     <q-input outlined v-model="model.title" :label="$t('title')"></q-input>
     <q-uploader
       field-name="file"
-      url="/api/upload"
+      url="/api/video/upload"
       style="max-width: 300px"
     />
   </q-page>

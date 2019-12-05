@@ -22,6 +22,7 @@ spring:
   servlet:
     multipart:
       max-file-size: 10000MB
+      max-request-size: 10000MB
 alpha:
   file:
     basedir: D:/workspace/efiles

@@ -8,5 +8,7 @@ import java.util.Date;
 public class VideoData {
   private String id;
   private String title;
+  private String filePath;
+  private String mimeType;
   private Date createdDate;
 }

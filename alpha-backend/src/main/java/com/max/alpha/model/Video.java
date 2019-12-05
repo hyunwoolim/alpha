@@ -28,6 +28,13 @@ public class Video {
   @Column(name = "TITLE")
   private String title;
 
+  @NonNull
+  @Column(name = "FILE_PATH")
+  private String filePath;
+
+  @Column(name = "MIME_TYPE")
+  private String mimeType;
+
   @CreatedDate
   @Column(name = "CREATED_DATE", updatable = false)
   private Date createdDate;
