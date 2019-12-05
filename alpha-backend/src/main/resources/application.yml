@@ -19,4 +19,6 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
-
+alpha:
+  file:
+    basedir: D:/workspace/efiles

@@ -14,7 +14,8 @@ const routes = [
       { name: 'game1', path: '/games/game1/:roomId', component: () => import('pages/game/Game1.vue') },
       { name: 'chats', path: '/chats', component: () => import('pages/chat/Chats.vue') },
       { name: 'chat', path: '/chat/:roomId', component: () => import('pages/chat/Chat.vue') },
-      { name: 'board', path: '/board', component: () => import('pages/board/Board.vue') }
+      { name: 'board', path: '/board', component: () => import('pages/board/Board.vue') },
+      { name: 'video', path: '/video', component: () => import('pages/video/Videos.vue') }
     ]
   },
   {

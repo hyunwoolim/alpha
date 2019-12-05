@@ -62,6 +62,14 @@
               {{ $t('board') }}
             </q-item-section>
           </q-item>
+          <q-item active clickable v-ripple @click="goPageVideo">
+            <q-item-section avatar>
+              <q-icon name="ion-ios-play-circle"></q-icon>
+            </q-item-section>
+            <q-item-section>
+              {{ $t('video') }}
+            </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
       <div v-if="!$store.state.sMember.isAuthenticated" class="absolute-top text-center" style="height: 100px; border-right: 1px solid #ddd">
@@ -145,6 +153,13 @@ export default {
     },
     goPageBoard () {
       this.$router.push({ name: 'board' }).catch((e) => {
+        if (e.name === 'NavigationDuplicated') {
+          this.drawer = false
+        }
+      })
+    },
+    goPageVideo () {
+      this.$router.push({ name: 'video' }).catch((e) => {
         if (e.name === 'NavigationDuplicated') {
           this.drawer = false
         }

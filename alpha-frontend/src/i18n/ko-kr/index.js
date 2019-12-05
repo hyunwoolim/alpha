@@ -20,6 +20,7 @@ export default {
   game1: '게임1',
   game: '게임',
   board: '게시판',
+  video: '비디오',
   please: {
     login: '로그인하세요'
   },
